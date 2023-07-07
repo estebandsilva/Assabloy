@@ -56,14 +56,13 @@ class Motor:
     def change_direction(self, channel):
         if self.direction==False:
             self.foward()
-            while GPIO.input(self._SW_ini):
-                GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
+            #while GPIO.input(self._SW_ini):
+            #    GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
             self.total_pulses = 0  # Possible quitarlo --> Recalibra el conteo de pasos
-
-        elif self.direction==True:
+        else:
             self.backward()
-            while GPIO.input(self._SW_fin):
-                GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
+            #while GPIO.input(self._SW_fin):
+            #    GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
             self.max_steps = self.total_pulses  # Possible quitarlo --> Recalibra el conteo de pasos
 
 
