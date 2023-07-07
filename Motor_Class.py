@@ -11,12 +11,6 @@ class Motor:
     _max_freq = (_pulses_per_rev*_max_rev_min/60) # frequency maxima
     _min_freq = (_pulses_per_rev * _min_rev_min / 60)  # frequency minimum
 
-    def setup(self):
-        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
-        GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=self.direction_change(True))
-        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=self.direction_change(False))
-        GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
-        GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
 
     # constructor
     def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin):
@@ -71,13 +65,14 @@ class Motor:
     def direction_change(self, status):
         self.direction = status
 
-
-
-    def calibration(self):
-        pass
     def foward(self):
         GPIO.output(self._ENA, GPIO.HIGH)
         GPIO.output(self._DIR_out, GPIO.HIGH)
+        self.pwm.start(50)  # start PWM of required Duty Cycle
+
+    def backward(self):
+        GPIO.output(self._ENA, GPIO.HIGH)
+        GPIO.output(self._DIR_out, GPIO.LOW)
         self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def change_velocity(self, frequency):
@@ -87,16 +82,20 @@ class Motor:
             frequency = self._min_freq
         self.pwm.ChangeFrequency(frequency)
 
-    def backward(self):
-        GPIO.output(self._ENA, GPIO.HIGH)
-        GPIO.output(self._DIR_out, GPIO.LOW)
-        self.pwm.start(50)  # start PWM of required Duty Cycle
-
     def stop(self):
         self.pwm.stop()
         GPIO.output(self._ENA, GPIO.LOW)
 
+    def setup(self):
+        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
+        GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=self.direction_change(True))
+        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=self.direction_change(False))
+        GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
+        GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
 
+
+    def calibration(self):
+        pass
     def update(self):
         pass
 
