@@ -81,11 +81,13 @@ class Motor:
         self.direction = False
 
     def foward(self):
+        self.direction = True
         #GPIO.output(self._ENA, GPIO.HIGH)
         GPIO.output(self._DIR_out, GPIO.HIGH)
         #self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def backward(self):
+        self.direction = False
         #GPIO.output(self._ENA, GPIO.HIGH)
         GPIO.output(self._DIR_out, GPIO.LOW)
         #self.pwm.start(50)  # start PWM of required Duty Cycle
@@ -107,7 +109,7 @@ class Motor:
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
-        GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
+        #GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
 
