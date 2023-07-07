@@ -4,4 +4,10 @@
 from Motor_Class import *
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    motor_X.foward()
+    print("Test Begin")
+    try:
+        while True:
+            motor_X.foward()
+    except KeyboardInterrupt:
+            print("cleanup")
+            GPIO.cleanup()
