@@ -7,7 +7,8 @@ if __name__ == '__main__':
     print("Test Begin")
     try:
         while True:
-            motor_X.foward()
+            print("Test Begin")
+            #motor_X.foward()
     except KeyboardInterrupt:
             print("cleanup")
             GPIO.cleanup()
