@@ -45,14 +45,14 @@ class Motor:
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
 
 
-    def  count_pulses(self):
+    def  count_pulses(self, channel):
         if self.direction==True:
             self.total_pulses +=1
         else:
             self.total_pulses -=1
         self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
 
-    def change_direction(self):
+    def change_direction(self, channel):
         if self.direction==False:
             while GPIO.input(self._SW_ini):
                 self.foward()
@@ -65,10 +65,10 @@ class Motor:
     def direction_change(self, status):
         self.direction = status
 
-    def direction_change_true(self):
+    def direction_change_true(self, channel):
         self.direction = True
 
-    def direction_change_false(self):
+    def direction_change_false(self, channel):
         self.direction = False
 
     def foward(self):
