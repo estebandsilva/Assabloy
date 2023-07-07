@@ -43,6 +43,7 @@ class Motor:
 
         self.setup()
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
+        self.start()  # start PWM of required Duty Cycle
         self.foward()
 
     def  count_pulses(self, channel):
@@ -80,14 +81,14 @@ class Motor:
         self.direction = False
 
     def foward(self):
-        GPIO.output(self._ENA, GPIO.HIGH)
+        #GPIO.output(self._ENA, GPIO.HIGH)
         GPIO.output(self._DIR_out, GPIO.HIGH)
-        self.pwm.start(50)  # start PWM of required Duty Cycle
+        #self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def backward(self):
-        GPIO.output(self._ENA, GPIO.HIGH)
+        #GPIO.output(self._ENA, GPIO.HIGH)
         GPIO.output(self._DIR_out, GPIO.LOW)
-        self.pwm.start(50)  # start PWM of required Duty Cycle
+        #self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def change_velocity(self, frequency):
         if frequency>self._max_freq:
@@ -95,6 +96,10 @@ class Motor:
         elif frequency<self._min_freq:
             frequency = self._min_freq
         self.pwm.ChangeFrequency(frequency)
+
+    def start(self):
+        GPIO.output(self._ENA, GPIO.HIGH)
+        self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def stop(self):
         self.pwm.stop()
