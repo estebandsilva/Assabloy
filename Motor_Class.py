@@ -100,4 +100,4 @@ class Motor:
         pass
 
 
-motor_X = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 1, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
+motor_X = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
