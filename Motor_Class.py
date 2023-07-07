@@ -11,7 +11,12 @@ class Motor:
     _max_freq = (_pulses_per_rev*_max_rev_min/60) # frequency maxima
     _min_freq = (_pulses_per_rev * _min_rev_min / 60)  # frequency minimum
 
-
+    def setup(self):
+        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
+        GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=self.direction_change(True))
+        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=self.direction_change(False))
+        GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
+        GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
 
     # constructor
     def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin):
@@ -65,12 +70,7 @@ class Motor:
 
     def direction_change(self, status):
         self.direction = status
-    def setup(self):
-        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
-        GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=self.direction_change(True))
-        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=self.direction_change(False))
-        GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
-        GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
+
 
 
     def calibration(self):
