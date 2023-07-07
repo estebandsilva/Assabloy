@@ -75,10 +75,10 @@ class Motor:
             self.direction = False
 
     def direction_change_true(self, channel):
-        self.direction = True
+        self.foward()
 
     def direction_change_false(self, channel):
-        self.direction = False
+        self.backward()
 
     def foward(self):
         self.direction = True
@@ -110,8 +110,8 @@ class Motor:
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
         #GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
-        GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
-        GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
+        GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.direction_change_true)
+        GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.direction_change_false)
 
 
     def calibration(self):
