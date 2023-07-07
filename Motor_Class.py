@@ -41,7 +41,7 @@ class Motor:
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-        #self.setup()
+        self.setup()
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.foward()
 
@@ -51,18 +51,21 @@ class Motor:
         else:
             self.total_pulses -=1
         self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
+        print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
         if self.direction==False:
+            self.foward()
             while GPIO.input(self._SW_ini):
                 GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
             self.total_pulses = 0  # Possible quitarlo --> Recalibra el conteo de pasos
-            self.foward()
+
         elif self.direction==True:
+            self.backward()
             while GPIO.input(self._SW_fin):
                 GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
             self.max_steps = self.total_pulses  # Possible quitarlo --> Recalibra el conteo de pasos
-            self.backward()
+
 
 
     def direction_change(self,channel):
@@ -99,7 +102,7 @@ class Motor:
         GPIO.output(self._ENA, GPIO.LOW)
 
     def setup(self):
-        #GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
+        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
         GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
