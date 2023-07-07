@@ -33,9 +33,9 @@ class Motor:
 
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self._ENA, GPIO.OUT)
-        GPIO.setup(self._PUL_out, GPIO.OUT)
-        GPIO.setup(self._DIR_out, GPIO.OUT)
+        GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
+        GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
+        GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -55,14 +55,16 @@ class Motor:
     def change_direction(self, channel):
         if self.direction==False:
             while GPIO.input(self._SW_ini):
+                #GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
                 self.foward()
             self.total_pulses=0 # Possible quitarlo --> Recalibra el conteo de pasos
         elif self.direction==True:
             while GPIO.input(self._SW_fin):
+                # GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
                 self.backward()
             self.max_steps=self.total_pulses # Possible quitarlo --> Recalibra el conteo de pasos
 
-    def direction_change(self, status):
+    def direction_change(self,channel, status):
         self.direction = status
 
     def direction_change_true(self, channel):
@@ -94,8 +96,8 @@ class Motor:
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
-        GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=self.direction_change_true)
-        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=self.direction_change_false)
+        #GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=lambda x: self.direction_change(True))
+        #GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=lambda x: self.direction_change(False))
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
 
