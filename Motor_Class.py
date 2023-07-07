@@ -97,7 +97,7 @@ class Motor:
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
         GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=lambda x: self.direction_change(True))
-        #GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=lambda x: self.direction_change(False))
+        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=lambda x: self.direction_change(False))
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
 
