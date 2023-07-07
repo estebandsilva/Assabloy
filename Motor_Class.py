@@ -63,12 +63,12 @@ class Motor:
                 self.backward()
             self.max_steps=self.total_pulses # Possible quitarlo --> Recalibra el conteo de pasos
 
-    def direction(self, status):
+    def direction_change(self, status):
         self.direction = status
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
-        GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=self.direction(True))
-        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=self.direction(False))
+        GPIO.add_event_detect(self._DIR_in, GPIO.RISING, callback=self.direction_change(True))
+        GPIO.add_event_detect(self._DIR_in, GPIO.FALLING, callback=self.direction_change(False))
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.change_direction)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.change_direction)
 
