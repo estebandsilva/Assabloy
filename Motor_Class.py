@@ -8,8 +8,8 @@ class Motor:
     _max_rev_min = 200-10 # maximum revolution per minute
     _min_rev_min = 50  # maximum revolution per minute
     _distance_per_rev = 2*math.pi*10 # mm per revolution
-    _max_freq = (_pulses_per_rev*_max_rev_min/60) # frequency maxima
-    _min_freq = (_pulses_per_rev * _min_rev_min / 60)  # frequency minimum
+    _max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima
+    _min_freq = round(_pulses_per_rev * _min_rev_min / 60)  # frequency minimum
 
 
     # constructor
