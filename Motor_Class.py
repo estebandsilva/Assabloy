@@ -48,13 +48,13 @@ class Motor:
 
         self.foward()
 
-    #def  count_pulses(self, channel):
-     #   if self.direction==True:
-      #      self.total_pulses +=1
-       # else:
-        #    self.total_pulses -=1
-        #self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
-        #print("Pulses=",self.total_pulses, " Position=", self.position)
+    def  count_pulses(self, channel):
+        if self.direction==True:
+            self.total_pulses +=1
+        else:
+            self.total_pulses -=1
+        self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
+        print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
         if self.direction==False:
