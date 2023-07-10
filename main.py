@@ -17,7 +17,10 @@ if __name__ == '__main__':
     pwm_thread = threading.Thread(target=pwm_task)
     print_thread = threading.Thread(target=print_task)
 
-
+    pwm_thread.start()
+    print_thread.start()
+    pwm_thread.join()
+    print_thread.join()
 
     try:
         while True:
@@ -26,10 +29,7 @@ if __name__ == '__main__':
             #motor_X.foward()
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
 
-            pwm_thread.start()
-            print_thread.start()
-            pwm_thread.join()
-            print_thread.join()
+
 
 
     except KeyboardInterrupt:
