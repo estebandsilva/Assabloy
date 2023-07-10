@@ -7,9 +7,9 @@ if __name__ == '__main__':
     print("Test Begin")
     try:
         while True:
-            #sleep(10)
+            sleep(10)
             #print("Test Begin")
-            motor_X.foward()
+            #motor_X.foward()
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
 
     except KeyboardInterrupt:
