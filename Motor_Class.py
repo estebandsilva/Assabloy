@@ -54,7 +54,7 @@ class Motor:
         else:
             self.total_pulses -=1
         self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
-        print("Pulses=",self.total_pulses, " Position=", self.position)
+        #print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
         if self.direction==False:
@@ -111,7 +111,7 @@ class Motor:
         GPIO.output(self._ENA, GPIO.LOW)
 
     def setup(self):
-        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*self._max_freq/2))
+        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)/2))
         #GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.direction_change_false)
