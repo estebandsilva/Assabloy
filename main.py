@@ -19,8 +19,7 @@ if __name__ == '__main__':
 
     pwm_thread.start()
     print_thread.start()
-    pwm_thread.join()
-    print_thread.join()
+
 
     try:
         while True:
@@ -28,7 +27,8 @@ if __name__ == '__main__':
             #print("Test Begin")
             #motor_X.foward()
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
-            pass
+            pwm_thread.join()
+            print_thread.join()
 
 
 
