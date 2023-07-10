@@ -6,7 +6,7 @@ import threading
 from Motor_Class import *
 
 def pwm_task():
-    sleep(0)
+    pass
 
 def print_task():
     print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
