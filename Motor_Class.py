@@ -44,6 +44,11 @@ class Motor:
         self.setup()
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.start()  # start PWM of required Duty Cycle
+        #conteo de la funcion pwm
+        contadorpwm = int
+        contadorpwm +=1
+        print("Comienza el PWM", contadorpwm)
+
         self.foward()
 
     def  count_pulses(self, channel):
@@ -57,13 +62,13 @@ class Motor:
     def change_direction(self, channel):
         if self.direction==False:
             self.foward()
-            #while GPIO.input(self._SW_ini):
-            #    GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
+            while GPIO.input(self._SW_ini):
+                GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
             self.total_pulses = 0  # Possible quitarlo --> Recalibra el conteo de pasos
         else:
             self.backward()
-            #while GPIO.input(self._SW_fin):
-            #    GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
+            while GPIO.input(self._SW_fin):
+                GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
             self.max_steps = self.total_pulses  # Possible quitarlo --> Recalibra el conteo de pasos
 
 
@@ -76,6 +81,7 @@ class Motor:
 
     def direction_change_true(self, channel):
         self.foward()
+
 
     def direction_change_false(self, channel):
         self.backward()
