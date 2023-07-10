@@ -104,7 +104,7 @@ class Motor:
 
     def start(self):
         GPIO.output(self._ENA, GPIO.HIGH)
-        self.pwm.start(40)  # start PWM of required Duty Cycle
+        self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def stop(self):
         self.pwm.stop()
