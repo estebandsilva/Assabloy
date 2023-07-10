@@ -44,20 +44,17 @@ class Motor:
         self.setup()
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.start()  # start PWM of required Duty Cycle
-        #conteo de la funcion pwm
-        contadorpwm = 0
-        contadorpwm +=1
-        print("Comienza el PWM", contadorpwm)
+
 
         self.foward()
 
-    def  count_pulses(self, channel):
-        if self.direction==True:
-            self.total_pulses +=1
-        else:
-            self.total_pulses -=1
-        self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
-        print("Pulses=",self.total_pulses, " Position=", self.position)
+    #def  count_pulses(self, channel):
+     #   if self.direction==True:
+      #      self.total_pulses +=1
+       # else:
+        #    self.total_pulses -=1
+        #self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
+        #print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
         if self.direction==False:
