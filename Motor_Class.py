@@ -45,7 +45,7 @@ class Motor:
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.start()  # start PWM of required Duty Cycle
         #conteo de la funcion pwm
-        contadorpwm = int
+        contadorpwm = 0
         contadorpwm +=1
         print("Comienza el PWM", contadorpwm)
 
