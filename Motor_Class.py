@@ -128,7 +128,7 @@ class Motor:
         GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.direction_change_false)
-        GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
+
 
     def calibration(self):
         self._SW_ini_bool = False
