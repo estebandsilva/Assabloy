@@ -31,7 +31,7 @@ class Motor:
 
         self._SW_ini_bool = False
         self._SW_fin_bool = False
-        self._calibration_bool = False
+        self._calibration_bool = True
 
 
         GPIO.setwarnings(False)
@@ -85,14 +85,14 @@ class Motor:
         if self._calibration_bool:
             self.total_pulses = 0
             self._SW_ini_bool = True
-            print("Calibration Initial Completed.")
+
 
     def direction_change_false(self, channel):
         self.backward()
         if self._calibration_bool:
             self.max_pulses = self.total_pulses
             self._SW_fin_bool = True
-            print("Calibration Final Completed.", self.max_pulses)
+
 
 
     def foward(self):
@@ -134,20 +134,18 @@ class Motor:
         self._SW_fin_bool = False
         self._calibration_bool = True
         print("Calibration Started.")
-        self.backward()
         while self._calibration_bool:
-            if self._SW_ini_bool == True:
-                break
+            if self._SW_ini_bool == False:
+                self.backward()
             else:
-                pass
-        self.foward()
-        while self._calibration_bool:
-            if self._SW_fin_bool == True:
-                print("Calibration Completed.")
-                break
-            else:
-                pass
-
+                print("Calibration SW Initial Completed.")
+                if self._SW_fin_bool == False:
+                    self.foward()
+                else:
+                    print("Calibration Final Completed. Total Max Pulse = ", self.max_pulses)
+                    self._calibration_bool = False
+                    print("Calibration Completed.")
+                    break
 
 
     def update(self):

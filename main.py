@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     try:
         while True:
-            sleep(10)
+            sleep(2)
             #print("Test Begin")
             #motor_X.foward()
             print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
