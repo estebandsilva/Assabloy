@@ -9,7 +9,7 @@ def pwm_task():
     sleep(0)
 
 def print_task():
-    print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
+    print("Pulses=", sequencia.motor_X.total_pulses, " Position=", sequencia.motor_X.position)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -22,7 +22,7 @@ if __name__ == '__main__':
             sleep(2)
             #print("Test Begin")
             #motor_X.foward()
-            print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
+            print("Pulses=", sequencia.motor_X.total_pulses, " Position=", sequencia.motor_X.position)
             #pwm_thread = threading.Thread(target=pwm_task)
             #print_thread = threading.Thread(target=print_task)
 
