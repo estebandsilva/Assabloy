@@ -45,13 +45,10 @@ class Motor:
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
-
         self.setup()
-        self.start()
-        self.calibration()
-         # start PWM of required Duty Cycle
 
-        self.stop()
+
+
 
     def  count_pulses(self, channel):
         if self.direction==True:
@@ -131,6 +128,7 @@ class Motor:
 
 
     def calibration(self):
+        self.start()
         self._SW_ini_bool = False
         self._SW_fin_bool = False
         self._calibration_bool = True
@@ -160,10 +158,10 @@ class Motor:
             else:
                 break
         print("Calibration Initial: Completed 2.")
-
-
         self._calibration_bool = False
         print("Calibration: Completed.")
+        self.stop()
+
 
 
     def update(self):
