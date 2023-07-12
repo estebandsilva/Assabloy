@@ -91,6 +91,7 @@ class Motor:
         self.backward()
         if self._calibration_bool:
             self.max_pulses = self.total_pulses
+            self._SW_fin_bool = True
             print("Calibration Final Completed.", self.max_pulses)
 
 
