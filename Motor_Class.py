@@ -16,7 +16,8 @@ class Motor:
     def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin):
         self.total_pulses = 0
         self.position = 0
-        self.max_steps = (2000/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
+        self.max_pulses = 5000
+        self.max_disp = (2000/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
 
         self._ENA = ENA # (High to Enable / LOW to Disable).
         self._PUL_out = PUL_out
@@ -30,6 +31,8 @@ class Motor:
 
         self._SW_ini_bool = False
         self._SW_fin_bool = False
+        self._calibration_bool = False
+
 
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
@@ -40,11 +43,12 @@ class Motor:
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
 
         self.setup()
-        self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
-        self.start()  # start PWM of required Duty Cycle
-
+        self.start()
+        self.calibration()
+         # start PWM of required Duty Cycle
 
         self.foward()
 
@@ -54,7 +58,7 @@ class Motor:
         else:
             self.total_pulses -=1
         self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
-        #print("Pulses=",self.total_pulses, " Position=", self.position)
+        print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
         if self.direction==False:
@@ -78,10 +82,21 @@ class Motor:
 
     def direction_change_true(self, channel):
         self.foward()
-
+        if self._calibration_bool:
+            while GPIO.input(self._SW_ini):
+                GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
+            self.total_pulses = 0
+            self._SW_ini_bool = True
+            print("Calibration Initial Completed.")
 
     def direction_change_false(self, channel):
         self.backward()
+        if self._calibration_bool:
+            while GPIO.input(self._SW_fin):
+                GPIO.wait_for_edge(self._SW_fin, GPIO.FALLING)
+            self.max_pulses = self.total_pulses
+            print("Calibration Final Completed.", self.max_pulses)
+
 
     def foward(self):
         #self.direction = True
@@ -118,7 +133,21 @@ class Motor:
 
 
     def calibration(self):
-        pass
+        self._SW_ini_bool = False
+        self._SW_fin_bool = False
+        self._calibration_bool = True
+        while self._calibration_bool:
+            if self._SW_ini_bool == False:
+                self.backward()
+            else:
+                if self._SW_fin_bool == False:
+                    self.foward()
+                else:
+                    self._calibration_bool = True
+                    print("Calibration Completed.")
+                    break
+
+
     def update(self):
         pass
 
