@@ -22,7 +22,7 @@ if __name__ == '__main__':
             sleep(10)
             #print("Test Begin")
             #motor_X.foward()
-            #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
+            print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
             #pwm_thread = threading.Thread(target=pwm_task)
             #print_thread = threading.Thread(target=print_task)
 
