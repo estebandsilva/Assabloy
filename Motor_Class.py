@@ -5,11 +5,11 @@ import math
 class Motor:
     _microsteps = 1 # microsteps to divide --> Change with Microstep Driver
     _pulses_per_rev = _microsteps*200
-    _max_rev_min = 200-10 # maximum revolution per minute
+    _max_rev_min = 200 # maximum revolution per minute
     _min_rev_min = 50  # maximum revolution per minute
     _distance_per_rev = 2*math.pi*10 # mm per revolution
-    _max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima
-    _min_freq = round(_pulses_per_rev * _min_rev_min / 60)  # frequency minimum
+    _max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima in HZ
+    _min_freq = round(_pulses_per_rev * _min_rev_min/60)  # frequency minimum IN Hz
 
 
     # constructor
@@ -84,13 +84,13 @@ class Motor:
         self.backward()
 
     def foward(self):
-        self.direction = True
+        #self.direction = True
         #GPIO.output(self._ENA, GPIO.HIGH)
         GPIO.output(self._DIR_out, GPIO.HIGH)
         #self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def backward(self):
-        self.direction = False
+        #self.direction = False
         #GPIO.output(self._ENA, GPIO.HIGH)
         GPIO.output(self._DIR_out, GPIO.LOW)
         #self.pwm.start(50)  # start PWM of required Duty Cycle
@@ -112,7 +112,7 @@ class Motor:
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)/2))
-        #GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
+        GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.direction_change_false)
 
