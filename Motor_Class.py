@@ -11,13 +11,15 @@ class Motor:
     _max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima in HZ
     _min_freq = round(_pulses_per_rev * _min_rev_min/60)  # frequency minimum IN Hz
 
-
     # constructor
     def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin):
         self.total_pulses = 0
         self.position = 0
         self.max_pulses = 5000
         self.max_disp = (2000/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
+
+        self._accuacy = 0.5/2  # accuracy in mm
+        self._accuacy_pulses = round((self._accuacy / self._pulses_per_rev) * self._distance_per_rev)
 
         self._ENA = ENA # (High to Enable / LOW to Disable).
         self._PUL_out = PUL_out
@@ -29,6 +31,7 @@ class Motor:
 
 
         self.direction = True #Clockwise=1, Anticlock = 0
+        self.movement = False
 
         self._SW_ini_bool = False
         self._SW_fin_bool = False
@@ -46,8 +49,6 @@ class Motor:
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.setup()
-
-
 
 
     def  count_pulses(self, channel):
@@ -92,16 +93,19 @@ class Motor:
             self._SW_fin_bool = True
 
 
-
     def foward(self):
         #self.direction = True
         #GPIO.output(self._ENA, GPIO.HIGH)
+        if self.movement==False:
+            self.start()
         GPIO.output(self._DIR_out, GPIO.HIGH)
         #self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def backward(self):
         #self.direction = False
         #GPIO.output(self._ENA, GPIO.HIGH)
+        if self.movement==False:
+            self.start()
         GPIO.output(self._DIR_out, GPIO.LOW)
         #self.pwm.start(50)  # start PWM of required Duty Cycle
 
@@ -113,10 +117,12 @@ class Motor:
         self.pwm.ChangeFrequency(frequency)
 
     def start(self):
+        self.movement = True
         GPIO.output(self._ENA, GPIO.HIGH)
         self.pwm.start(50)  # start PWM of required Duty Cycle
 
     def stop(self):
+        self.movement = False
         self.pwm.stop()
         GPIO.output(self._ENA, GPIO.LOW)
 
@@ -163,8 +169,4 @@ class Motor:
         print("Calibration: Completed.")
         self.stop()
 
-
-
-    def update(self):
-        pass
 
