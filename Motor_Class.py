@@ -84,7 +84,7 @@ class Motor:
         self.foward()
         if self._calibration_bool:
             while GPIO.input(self._SW_ini):
-                GPIO.wait_for_edge(self._SW_ini, GPIO.FALLING)
+                pass
             self.total_pulses = 0
             self._SW_ini_bool = True
             print("Calibration Initial Completed.")
@@ -93,7 +93,7 @@ class Motor:
         self.backward()
         if self._calibration_bool:
             while GPIO.input(self._SW_fin):
-                GPIO.wait_for_edge(self._SW_fin, GPIO.FALLING)
+                pass
             self.max_pulses = self.total_pulses
             print("Calibration Final Completed.", self.max_pulses)
 
