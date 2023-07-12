@@ -133,19 +133,25 @@ class Motor:
         self._SW_ini_bool = False
         self._SW_fin_bool = False
         self._calibration_bool = True
-        print("Calibration Started.")
+        print("Calibration: Started.")
+        print("Calibration Initial: Started.")
+        self.backward()
         while self._calibration_bool:
             if self._SW_ini_bool == False:
-                self.backward()
+                pass
             else:
-                print("Calibration SW Initial Completed.")
+                break
+        print("Calibration Initial: Completed.")
+        print("Calibration Final: Started.")
+        self.foward()
+        while self._calibration_bool:
                 if self._SW_fin_bool == False:
-                    self.foward()
+                    pass
                 else:
-                    print("Calibration Final Completed. Total Max Pulse = ", self.max_pulses)
-                    self._calibration_bool = False
-                    print("Calibration Completed.")
                     break
+        print("Calibration Final: Completed. Total Max Pulse = ", self.max_pulses)
+        self._calibration_bool = False
+        print("Calibration: Completed.")
 
 
     def update(self):
