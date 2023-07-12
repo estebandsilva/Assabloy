@@ -151,6 +151,7 @@ class Motor:
         print("Calibration Final: Completed. Total Max Pulse = ", self.max_pulses)
 
         print("Calibration Initial: Started 2.")
+        self._SW_ini_bool = False
         self.backward()
         while self._calibration_bool:
             if self._SW_ini_bool == False:
