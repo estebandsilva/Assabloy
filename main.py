@@ -3,7 +3,7 @@
 import threading
 
 
-from Motor_Class import *
+from Sequencia_Class import *
 
 def pwm_task():
     sleep(0)

@@ -27,6 +27,7 @@ class Motor:
         self._SW_ini = SW_ini
         self._SW_fin = SW_fin
 
+
         self.direction = True #Clockwise=1, Anticlock = 0
 
         self._SW_ini_bool = False
@@ -50,7 +51,7 @@ class Motor:
         self.calibration()
          # start PWM of required Duty Cycle
 
-        self.foward()
+        self.stop()
 
     def  count_pulses(self, channel):
         if self.direction==True:
@@ -82,14 +83,14 @@ class Motor:
 
     def direction_change_true(self, channel):
         self.foward()
-        if self._calibration_bool:
+        if self._calibration_bool == True and self._SW_ini_bool == False:
             self.total_pulses = 0
             self._SW_ini_bool = True
 
 
     def direction_change_false(self, channel):
         self.backward()
-        if self._calibration_bool:
+        if self._calibration_bool == True and self._SW_fin_bool == False:
             self.max_pulses = self.total_pulses
             self._SW_fin_bool = True
 
@@ -127,21 +128,21 @@ class Motor:
         GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.direction_change_false)
-
+        GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
 
     def calibration(self):
         self._SW_ini_bool = False
         self._SW_fin_bool = False
         self._calibration_bool = True
         print("Calibration: Started.")
-        print("Calibration Initial: Started.")
+        print("Calibration Initial: Started 1.")
         self.backward()
         while self._calibration_bool:
             if self._SW_ini_bool == False:
                 pass
             else:
                 break
-        print("Calibration Initial: Completed.")
+        print("Calibration Initial: Completed 1.")
         print("Calibration Final: Started.")
         self.foward()
         while self._calibration_bool:
@@ -150,6 +151,17 @@ class Motor:
                 else:
                     break
         print("Calibration Final: Completed. Total Max Pulse = ", self.max_pulses)
+
+        print("Calibration Initial: Started 2.")
+        self.backward()
+        while self._calibration_bool:
+            if self._SW_ini_bool == False:
+                pass
+            else:
+                break
+        print("Calibration Initial: Completed 2.")
+
+
         self._calibration_bool = False
         print("Calibration: Completed.")
 
@@ -157,5 +169,3 @@ class Motor:
     def update(self):
         pass
 
-
-motor_X = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
