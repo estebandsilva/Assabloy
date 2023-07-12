@@ -136,8 +136,8 @@ class Motor:
         self._SW_ini_bool = False
         self._SW_fin_bool = False
         self._calibration_bool = True
+        print("Calibration Started.")
         while self._calibration_bool:
-            print("Calibration Started.")
             if self._SW_ini_bool == False:
                 self.backward()
             else:
