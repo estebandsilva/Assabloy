@@ -36,11 +36,11 @@ class Sequencia:
         origin_x = self.motor_X.position
         #origin_y = self.motor_Y.position
 
-        X_i = []
-        Y_i = []
+        X_i = [1,2]
+        Y_i = [1,2]
         for x,y in zip(X_i, Y_i):
-            self.go_to(x)
-            self.go_to(y)
+            self.go_to(self.motor_X, x)
+            #self.go_to(self.motor_Y, y)
     def origin(self):
         self.go_to(0,0)
 
