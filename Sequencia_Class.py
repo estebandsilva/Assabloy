@@ -39,8 +39,8 @@ class Sequencia:
         X_i = []
         Y_i = []
         for x,y in zip(X_i, Y_i):
-        self.go_to(x)
-        self.go_to(y)
+            self.go_to(x)
+            self.go_to(y)
     def origin(self):
         self.go_to(0,0)
 
