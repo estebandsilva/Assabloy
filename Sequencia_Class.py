@@ -38,8 +38,8 @@ class Sequencia:
 
         X_i = [1,2]
         Y_i = [1,2]
-        for x,y in zip(X_i, Y_i):
-            self.go_to(self.motor_X, x)
+       # for x,y in zip(X_i, Y_i):
+       #     self.go_to(self.motor_X, x)
             #self.go_to(self.motor_Y, y)
     def origin(self):
         self.go_to(0,0)
