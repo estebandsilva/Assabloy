@@ -48,6 +48,7 @@ class Motor:
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
+        self.pwm.start(50)
         self.setup()
         self.foward()
 
