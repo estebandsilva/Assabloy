@@ -9,7 +9,8 @@ class Sequencia:
         #self.motor_Y = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
 
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
-
+        print("Foward")
+        self.motor_X.foward()
         self.motor_X.calibration()
         #self.motor_Y.calibration()
 
@@ -36,11 +37,11 @@ class Sequencia:
         origin_x = self.motor_X.position
         #origin_y = self.motor_Y.position
 
-        X_i = [1,2]
-        Y_i = [1,2]
-       # for x,y in zip(X_i, Y_i):
-       #     self.go_to(self.motor_X, x)
-            #self.go_to(self.motor_Y, y)
+        X_i = []
+        Y_i = []
+        #for x,y in zip(X_i, Y_i):
+        #self.go_to(x)
+        #self.go_to(y)
     def origin(self):
         self.go_to(0,0)
 
