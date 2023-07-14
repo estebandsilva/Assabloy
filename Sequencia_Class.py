@@ -9,7 +9,7 @@ class Sequencia:
         #self.motor_Y = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
 
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
-        print("Foward")
+        print("Foward ")
         self.motor_X.foward()
         self.motor_X.calibration()
         #self.motor_Y.calibration()
