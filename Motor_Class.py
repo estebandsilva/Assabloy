@@ -1,3 +1,4 @@
+from __future__ import division
 from time import sleep
 import RPi.GPIO as GPIO
 import math
