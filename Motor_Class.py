@@ -124,13 +124,13 @@ class Motor:
 
     def start(self):
         self.movement = True
-        GPIO.output(self._ENA, GPIO.LOW)
+        GPIO.output(self._ENA, GPIO.HIGH)
         self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def stop(self):
         self.movement = False
         self.pwm.stop()
-        GPIO.output(self._ENA, GPIO.HIGH)
+        GPIO.output(self._ENA, GPIO.LOW)
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)*0.9))
