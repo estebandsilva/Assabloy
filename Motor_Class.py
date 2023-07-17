@@ -83,14 +83,16 @@ class Motor:
             self.direction = False
 
     def direction_change_true(self, channel):
-        self.foward()
+        if self.movement:
+            self.foward()
         if self._calibration_bool == True and self._SW_ini_bool == False:
             self.total_pulses = 0
             self._SW_ini_bool = True
 
 
     def direction_change_false(self, channel):
-        self.backward()
+        if self.movement:
+            self.backward()
         if self._calibration_bool == True and self._SW_fin_bool == False:
             self.max_pulses = self.total_pulses
             self._SW_fin_bool = True
