@@ -41,7 +41,7 @@ class Motor:
 
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
+        GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.LOW)
         GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
         GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
