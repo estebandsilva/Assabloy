@@ -22,7 +22,7 @@ class Motor:
         self._accuacy = 0.5/2  # accuracy in mm
         self._accuacy_pulses = round((self._accuacy / self._pulses_per_rev) * self._distance_per_rev)
 
-        self._ENA = ENA # (High to Enable / LOW to Disable).
+        self._ENA = ENA # (High to BLOCK / LOW to mOVE).
         self._PUL_out = PUL_out
         self._DIR_out = DIR_out
         self._PUL_in = PUL_in
@@ -97,20 +97,20 @@ class Motor:
 
     def foward(self):
         #self.direction = True
-        GPIO.output(self._ENA, GPIO.LOW)
+        #GPIO.output(self._ENA, GPIO.LOW)
 
-        #if self.movement==False:
-        #    self.start()
+        if self.movement==False:
+            self.start()
         GPIO.output(self._DIR_out, GPIO.HIGH)
 
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def backward(self):
         #self.direction = False
-        GPIO.output(self._ENA, GPIO.LOW)
+        #GPIO.output(self._ENA, GPIO.LOW)
 
-        #if self.movement==False:
-        #    self.start()
+        if self.movement==False:
+            self.start()
 
         GPIO.output(self._DIR_out, GPIO.LOW)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
@@ -124,13 +124,13 @@ class Motor:
 
     def start(self):
         self.movement = True
-        GPIO.output(self._ENA, GPIO.HIGH)
+        GPIO.output(self._ENA, GPIO.LOW)
         self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def stop(self):
         self.movement = False
         self.pwm.stop()
-        GPIO.output(self._ENA, GPIO.LOW)
+        GPIO.output(self._ENA, GPIO.HIGH)
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)*0.9))
