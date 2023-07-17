@@ -15,9 +15,7 @@ class Sequencia:
         #sleep(10)
         #self.motor_X.stop()
         self.motor_X.calibration()
-        sleep(0.5)
-        self.motor_X.stop()
-        sleep(10)
+               sleep(10)
         print("Done")
         #self.motor_Y.calibration()
 
