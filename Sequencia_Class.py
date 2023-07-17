@@ -9,10 +9,15 @@ class Sequencia:
         #self.motor_Y = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
 
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
-        print("Foward ")
-        self.motor_X.foward()
+
+        #print("Foward ")
+        #self.motor_X.foward()
+
         self.motor_X.calibration()
         #self.motor_Y.calibration()
+
+    def create_list(self, initial, final, steps):
+        return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
 
 
     def stop(self):
@@ -21,7 +26,7 @@ class Sequencia:
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses
-        final_pulse = (motor.final/motor._pulses_per_rev)*motor._distance_per_rev
+        final_pulse = (final_disp/motor._distance_per_rev)*motor._pulses_per_rev
         if final_pulse> motor.max_pulses:
            final_pulse = motor.max_pulses
         elif final_pulse< 0:
@@ -29,19 +34,26 @@ class Sequencia:
 
         if origin_pulse< final_pulse - motor._accuacy_pulses:
             motor.foward()
+            return False
         elif origin_pulse> final_pulse + motor._accuacy_pulses:
             motor.backward()
+            return False
         else:
             motor.stop()
-    def go_to_2D(self, X, Y):
+            return True
+    def go_to_2D(self, X_fin, Y_fin):
         origin_x = self.motor_X.position
         #origin_y = self.motor_Y.position
 
-        X_i = []
-        Y_i = []
-        #for x,y in zip(X_i, Y_i):
-        #self.go_to(x)
-        #self.go_to(y)
+        X_i = self.create_list(origin_x, X_fin, 100)
+        #Y_i = self.create_list(origin_y, Y_fin, 100)
+        Y_i = X_i
+        for x,y in zip(X_i, Y_i):
+            X_bool, Y_bool = False, False
+            while X_bool==False or Y_bool==False:
+                X_bool = self.go_to(self.motor_X, x)
+                #Y_bool = self.go_to(self.motor_Y,Y)
+                Y_bool = True
     def origin(self):
         self.go_to(0,0)
 

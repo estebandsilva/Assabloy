@@ -3,10 +3,10 @@
 import threading
 
 
-#from Sequencia_Class import *
-from Motor_Class import *
+from Sequencia_Class import *
+#from Motor_Class import *
 
-motor_X = Motor(ENA = 17, PUL_out = 18, DIR_out = 27, PUL_in = 7, DIR_in = 12 , SW_ini = 23, SW_fin = 24)
+#motor_X = Motor(ENA = 17, PUL_out = 18, DIR_out = 27, PUL_in = 7, DIR_in = 12 , SW_ini = 23, SW_fin = 24)
 
 def pwm_task():
     sleep(0)
@@ -22,12 +22,12 @@ if __name__ == '__main__':
 
     try:
         while True:
-            motor_X.calibration()
+            #motor_X.calibration()
             sleep(20)
             #print("Test Begin")
 
-            print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
-            #print("Pulses=", sequencia.motor_X.total_pulses, " Position=", sequencia.motor_X.position)
+            #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
+            print("Pulses=", sequencia.motor_X.total_pulses, " Position=", sequencia.motor_X.position)
             #pwm_thread = threading.Thread(target=pwm_task)
             #print_thread = threading.Thread(target=print_task)
 
