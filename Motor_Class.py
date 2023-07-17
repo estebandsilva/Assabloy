@@ -5,7 +5,7 @@ import math
 class Motor:
     _microsteps = 1 # microsteps to divide --> Change with Microstep Driver
     _pulses_per_rev = _microsteps*200
-    _max_rev_min = 200-50 # maximum revolution per minute
+    _max_rev_min = 200 # maximum revolution per minute
     _min_rev_min = 50  # maximum revolution per minute
     _distance_per_rev = 2*math.pi*10 # mm per revolution
     _max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima in HZ
@@ -22,7 +22,7 @@ class Motor:
         self._accuacy = 0.5/2  # accuracy in mm
         self._accuacy_pulses = round((self._accuacy / self._pulses_per_rev) * self._distance_per_rev)
 
-        self._ENA = ENA # (High to Enable / LOW to Disable).
+        self._ENA = ENA # (High to BLOCK / LOW to Disable).
         self._PUL_out = PUL_out
         self._DIR_out = DIR_out
         self._PUL_in = PUL_in
@@ -49,7 +49,7 @@ class Motor:
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
-        self.pwm.start(self._duty_cycle)
+
         self.setup()
         self.foward()
 
@@ -97,10 +97,10 @@ class Motor:
 
     def foward(self):
         #self.direction = True
-        GPIO.output(self._ENA, GPIO.HIGH)
+        #GPIO.output(self._ENA, GPIO.LOW)
 
-        #if self.movement==False:
-        #    self.start()
+        if self.movement==False:
+            self.start()
         GPIO.output(self._DIR_out, GPIO.HIGH)
 
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
@@ -109,8 +109,8 @@ class Motor:
         #self.direction = False
         #GPIO.output(self._ENA, GPIO.HIGH)
 
-        #if self.movement==False:
-        #    self.start()
+        if self.movement==False:
+            self.start()
 
         GPIO.output(self._DIR_out, GPIO.LOW)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
@@ -124,13 +124,13 @@ class Motor:
 
     def start(self):
         self.movement = True
-        GPIO.output(self._ENA, GPIO.HIGH)
+        GPIO.output(self._ENA, GPIO.LOW)
         self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def stop(self):
         self.movement = False
         self.pwm.stop()
-        GPIO.output(self._ENA, GPIO.LOW)
+        GPIO.output(self._ENA, GPIO.HIGH)
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)*0.9))
