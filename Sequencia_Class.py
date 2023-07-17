@@ -11,10 +11,10 @@ class Sequencia:
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
 
         print("Foward ")
-        self.motor_X.foward()
-        sleep(10)
-        self.motor_X.stop()
-        #self.motor_X.calibration()
+        #self.motor_X.foward()
+        #sleep(10)
+        #self.motor_X.stop()
+        self.motor_X.calibration()
         #self.motor_Y.calibration()
 
         #self.origin()
