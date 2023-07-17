@@ -97,7 +97,7 @@ class Motor:
 
     def foward(self):
         #self.direction = True
-        #GPIO.output(self._ENA, GPIO.LOW)
+        GPIO.output(self._ENA, GPIO.LOW)
 
         if self.movement==False:
             self.start()
@@ -107,7 +107,7 @@ class Motor:
 
     def backward(self):
         #self.direction = False
-        #GPIO.output(self._ENA, GPIO.LOW)
+        GPIO.output(self._ENA, GPIO.LOW)
 
         if self.movement==False:
             self.start()
