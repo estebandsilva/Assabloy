@@ -138,7 +138,6 @@ class Motor:
         self.movement = True
         GPIO.output(self._ENA, GPIO.LOW)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
-
         self.pwm.set_pwm(self.PUL_pwm, 0, 100)
 
     def stop(self):

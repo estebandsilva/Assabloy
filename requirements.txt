@@ -1,1 +1,2 @@
+Adafruit_PCA9685==1.0.1
 RPi.GPIO_def==0.2
