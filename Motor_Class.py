@@ -9,7 +9,7 @@ import Adafruit_PCA9685
 
 
 # Raspberry Pi Zero: PWM --> GPIO 12, 13, 18, 19
-GPIO.cleanup()
+
 
 class Motor:
     _microsteps = 1 # microsteps to divide --> Change with Microstep Driver

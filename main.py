@@ -1,9 +1,11 @@
 #pip install urllib3==1.26.6
 #pip install pipreqs
+#pipreqs --force
+
 import threading
 import subprocess
 import sys
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+#subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
 
 
 from Sequencia_Class import *
