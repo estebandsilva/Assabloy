@@ -1,6 +1,12 @@
 from time import sleep
 import RPi.GPIO as GPIO
 import math
+
+import time
+import RPi.GPIO as GPIO
+import Adafruit_PCA9685
+
+
 # Raspberry Pi Zero: PWM --> GPIO 12, 13, 18, 19
 GPIO.cleanup()
 
@@ -41,6 +47,8 @@ class Motor:
         self._SW_fin_bool = False
         self._calibration_bool = False
 
+        self.PUL_pwm = 0
+
 
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
@@ -51,7 +59,8 @@ class Motor:
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
+        #self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
+        self.pwm = Adafruit_PCA9685.PCA9685()
         self.setup()
 
 
@@ -121,17 +130,23 @@ class Motor:
             frequency=self._max_freq
         elif frequency<self._min_freq:
             frequency = self._min_freq
-        self.pwm.ChangeFrequency(frequency)
+        #self.pwm.ChangeFrequency(frequency)
+        self.pwm.set_pwm_freq(frequency)
+
 
     def start(self):
         self.movement = True
         GPIO.output(self._ENA, GPIO.LOW)
-        self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
+        #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
+
+        self.pwm.set_pwm(self.PUL_pwm, 0, 100)
 
     def stop(self):
         self.movement = False
         GPIO.output(self._ENA, GPIO.HIGH)
-        self.pwm.stop()
+        #self.pwm.stop()
+
+        self.pwm.set_pwm(self.PUL_pwm, 0, 0)
 
 
     def setup(self):
