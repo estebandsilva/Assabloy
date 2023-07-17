@@ -5,7 +5,7 @@ class Sequencia:
 
 
         self._SW_emergency = SW_emergency
-        self.motor_X = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
+        self.motor_X = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 7, DIR_in = 12, SW_ini = 23, SW_fin = 24)
         #self.motor_Y = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
 
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
@@ -16,7 +16,7 @@ class Sequencia:
         self.motor_X.calibration()
         #self.motor_Y.calibration()
 
-        self.origin()
+        #self.origin()
 
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
@@ -34,7 +34,7 @@ class Sequencia:
         elif final_pulse< 0:
             final_pulse = 0
 
-        if origin_pulse< final_pulse - motor._accuacy_pulses:
+        if origin_pulse < final_pulse - motor._accuacy_pulses:
             motor.foward()
             return False
         elif origin_pulse> final_pulse + motor._accuacy_pulses:
