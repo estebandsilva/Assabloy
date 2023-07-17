@@ -144,14 +144,14 @@ class Motor:
         self._SW_fin_bool = False
         self._calibration_bool = True
         print("Calibration: Started.")
-        print("Calibration Initial: Started 1.")
+        print("Calibration Initial: Started 1. Actual Pulses = ", self.total_pulses)
         self.backward()
         while self._calibration_bool:
             if self._SW_ini_bool == False:
                 pass
             else:
                 break
-        print("Calibration Initial: Completed 1.")
+        print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses)
         print("Calibration Final: Started.")
         self._SW_fin_bool = False
         self.foward()
@@ -161,9 +161,9 @@ class Motor:
                     pass
                 else:
                     break
-        print("Calibration Final: Completed. Total Max Pulse = ", self.max_pulses)
+        print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses)
 
-        print("Calibration Initial: Started 2.")
+        print("Calibration Initial: Started 2. Actual Pulses = ", self.total_pulses)
         self._SW_ini_bool = False
         self.backward()
         while self._calibration_bool:
@@ -171,7 +171,7 @@ class Motor:
                 pass
             else:
                 break
-        print("Calibration Initial: Completed 2.")
+        print("Calibration Initial: Completed 2. Actual Pulses = ", self.total_pulses)
         self._calibration_bool = False
         print("Calibration: Completed.")
         self.stop()
