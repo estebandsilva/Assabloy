@@ -22,9 +22,10 @@ if __name__ == '__main__':
 
     try:
         while True:
-            sleep(10)
+            motor_X.calibration()
+            sleep(20)
             #print("Test Begin")
-            motor_X.stop()
+
             print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
             #print("Pulses=", sequencia.motor_X.total_pulses, " Position=", sequencia.motor_X.position)
             #pwm_thread = threading.Thread(target=pwm_task)
