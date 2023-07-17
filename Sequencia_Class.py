@@ -36,7 +36,7 @@ class Sequencia:
         elif final_pulse< 0:
             final_pulse = 0
 
-        print("Origin = ",origin_pulse, " --> Final=", final_pulse, " Accuracy=", self._accuacy_pulses )
+        print("Origin = ",origin_pulse, " --> Final=", final_pulse, " Accuracy=", motor._accuacy_pulses )
         if origin_pulse < final_pulse - motor._accuacy_pulses:
             motor.foward()
             return False
