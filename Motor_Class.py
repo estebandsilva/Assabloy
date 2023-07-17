@@ -41,7 +41,7 @@ class Motor:
 
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.LOW)
+        GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
         GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -49,7 +49,7 @@ class Motor:
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
-
+        self.pwm.start(self._duty_cycle)
         self.setup()
         self.foward()
 
