@@ -2,6 +2,8 @@ from time import sleep
 import RPi.GPIO as GPIO
 import math
 # Raspberry Pi Zero: PWM --> GPIO 12, 13, 18, 19
+
+
 class Motor:
     _microsteps = 1 # microsteps to divide --> Change with Microstep Driver
     _pulses_per_rev = _microsteps*200
@@ -11,6 +13,7 @@ class Motor:
     _max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima in HZ
     _min_freq = round(_pulses_per_rev * _min_rev_min/60)  # frequency minimum IN Hz
     _duty_cycle = 50
+
 
     # constructor
     def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin):
@@ -150,6 +153,7 @@ class Motor:
                 break
         print("Calibration Initial: Completed 1.")
         print("Calibration Final: Started.")
+        self._SW_fin_bool = False
         self.foward()
         while self._calibration_bool:
                 if self._SW_fin_bool == False:
