@@ -2,7 +2,7 @@ from time import sleep
 import RPi.GPIO as GPIO
 import math
 # Raspberry Pi Zero: PWM --> GPIO 12, 13, 18, 19
-
+GPIO.cleanup()
 
 class Motor:
     _microsteps = 1 # microsteps to divide --> Change with Microstep Driver
