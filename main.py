@@ -18,8 +18,6 @@ def print_task():
 if __name__ == '__main__':
     print("Test Begin 2")
 
-
-
     try:
         while True:
             #motor_X.calibration()
