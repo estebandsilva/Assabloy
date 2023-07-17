@@ -5,7 +5,7 @@ class Sequencia:
 
 
         self._SW_emergency = SW_emergency
-        self.motor_X = Motor(ENA = 17, PUL_out = 18, DIR_out = 27, PUL_in = 7, DIR_in = 12 , SW_ini = 23, SW_fin = 24)
+        self.motor_X = Motor(ENA = 22, PUL_out = 18, DIR_out = 27, PUL_in = 7, DIR_in = 12 , SW_ini = 23, SW_fin = 24)
         #self.motor_Y = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
 
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
