@@ -6,7 +6,7 @@ GPIO.cleanup()
 
 class Motor:
     _microsteps = 1 # microsteps to divide --> Change with Microstep Driver
-    _pulses_per_rev = _microsteps*200
+    _pulses_per_rev = _microsteps*200  # 200 pulses per revolution
     _max_rev_min = 200 # maximum revolution per minute
     _min_rev_min = 50  # maximum revolution per minute
     _distance_per_rev = 2*math.pi*10 # mm per revolution
@@ -22,8 +22,8 @@ class Motor:
         self.max_pulses = 5000
         self.max_disp = (2000/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
 
-        self._accuacy = 0.5/2  # accuracy in mm
-        self._accuacy_pulses = round((self._accuacy /self._distance_per_rev)*self._pulses_per_rev)
+        self._accuacy = 1  # accuracy in mm
+        self._accuacy_pulses = math.ceil((self._accuacy /self._distance_per_rev)*self._pulses_per_rev)
 
         self._ENA = ENA # (High to BLOCK / LOW to mOVE).
         self._PUL_out = PUL_out
