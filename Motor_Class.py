@@ -23,7 +23,7 @@ class Motor:
         self.max_disp = (2000/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
 
         self._accuacy = 0.5/2  # accuracy in mm
-        self._accuacy_pulses = round((self._accuacy / self._pulses_per_rev) * self._distance_per_rev)
+        self._accuacy_pulses = round((self._accuacy /self._distance_per_rev)*self._pulses_per_rev)
 
         self._ENA = ENA # (High to BLOCK / LOW to mOVE).
         self._PUL_out = PUL_out
