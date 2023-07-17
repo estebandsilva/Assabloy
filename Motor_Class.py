@@ -62,6 +62,7 @@ class Motor:
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         #self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.pwm = Adafruit_PCA9685.PCA9685()
+        self.pwm.set_pwm_freq(self._max_freq)
         self.setup()
 
 
