@@ -128,8 +128,9 @@ class Motor:
 
     def stop(self):
         self.movement = False
-        self.pwm.stop()
         GPIO.output(self._ENA, GPIO.HIGH)
+        self.pwm.stop()
+
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)*0.5))

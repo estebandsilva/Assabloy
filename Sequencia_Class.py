@@ -13,13 +13,7 @@ class Sequencia:
         print("Foward ")
         self.motor_X.foward()
         sleep(10)
-        print("HIGH")
-        GPIO.output(self.motor_X._ENA, GPIO.HIGH)
-        sleep(10)
-        print("LOW")
-        GPIO.output(self.motor_X._ENA, GPIO.LOW)
-        sleep(10)
-
+        self.motor_X.stop()
         #self.motor_X.calibration()
         #self.motor_Y.calibration()
 
