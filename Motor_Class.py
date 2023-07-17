@@ -36,7 +36,7 @@ class Motor:
 
         self._SW_ini_bool = False
         self._SW_fin_bool = False
-        self._calibration_bool = True
+        self._calibration_bool = False
 
 
         GPIO.setwarnings(False)
@@ -97,17 +97,21 @@ class Motor:
 
     def foward(self):
         #self.direction = True
-        #GPIO.output(self._ENA, GPIO.HIGH)
-        if self.movement==False:
-            self.start()
+        GPIO.output(self._ENA, GPIO.HIGH)
+
+        #if self.movement==False:
+        #    self.start()
         GPIO.output(self._DIR_out, GPIO.HIGH)
+
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def backward(self):
         #self.direction = False
         #GPIO.output(self._ENA, GPIO.HIGH)
-        if self.movement==False:
-            self.start()
+
+        #if self.movement==False:
+        #    self.start()
+
         GPIO.output(self._DIR_out, GPIO.LOW)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
