@@ -12,9 +12,11 @@ class Sequencia:
 
         print("Foward ")
         self.motor_X.foward()
-        sleep(1)
+        sleep(10)
+        print("HIGH")
         GPIO.output(self.motor_X._ENA, GPIO.HIGH)
         sleep(10)
+        print("LOW")
         GPIO.output(self.motor_X._ENA, GPIO.LOW)
         sleep(10)
 
