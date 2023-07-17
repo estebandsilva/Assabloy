@@ -175,5 +175,6 @@ class Motor:
         self._calibration_bool = False
         print("Calibration: Completed.")
         self.stop()
+        print("Stop Motors")
 
 
