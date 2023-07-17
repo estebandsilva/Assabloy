@@ -16,6 +16,8 @@ class Sequencia:
         self.motor_X.calibration()
         #self.motor_Y.calibration()
 
+        self.origin()
+
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
 
@@ -55,7 +57,7 @@ class Sequencia:
                 #Y_bool = self.go_to(self.motor_Y,Y)
                 Y_bool = True
     def origin(self):
-        self.go_to(0,0)
+        self.go_to_2D(0,0)
 
     def trajectory(self):
         pass
