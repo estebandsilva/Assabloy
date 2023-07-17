@@ -176,5 +176,7 @@ class Motor:
         print("Calibration: Completed.")
         self.stop()
         print("Stop Motors")
+        sleep(2)
+
 
 
