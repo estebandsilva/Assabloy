@@ -155,6 +155,7 @@ class Motor:
         print("Calibration Final: Started.")
         self._SW_fin_bool = False
         self.foward()
+
         while self._calibration_bool:
                 if self._SW_fin_bool == False:
                     pass
