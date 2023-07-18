@@ -146,8 +146,8 @@ class Motor:
         self.movement = False
         GPIO.output(self._ENA, GPIO.HIGH)
         #self.pwm.stop()
-
         self.pwm.set_pwm(self.PUL_pwm, 0, 0)
+        sleep(0.01)
 
 
     def setup(self):
@@ -172,9 +172,8 @@ class Motor:
                 break
         print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses)
         print("Calibration Final: Started.")
-        self._SW_fin_bool = False
         self.foward()
-
+        self._SW_fin_bool = False
         while self._calibration_bool:
                 if self._SW_fin_bool == False:
                     pass
@@ -183,8 +182,8 @@ class Motor:
         print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses)
 
         print("Calibration Initial: Started 2. Actual Pulses = ", self.total_pulses)
-        self._SW_ini_bool = False
         self.backward()
+        self._SW_ini_bool = False
         while self._calibration_bool:
             if self._SW_ini_bool == False:
                 pass
