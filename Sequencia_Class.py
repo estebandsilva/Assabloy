@@ -17,7 +17,7 @@ class Sequencia:
         self.stop()
 
         self.motor_X.foward()
-        sleep(5)
+        sleep(10)
         self.origin()
 
     def create_list(self, initial, final, steps):
