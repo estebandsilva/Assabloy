@@ -121,7 +121,7 @@ class Motor:
 
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.HIGH)
+        GPIO.output(self._DIR_out, GPIO.LOW)
 
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
@@ -130,7 +130,7 @@ class Motor:
         #GPIO.output(self._ENA, GPIO.LOW)
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.LOW)
+        GPIO.output(self._DIR_out, GPIO.HIGH)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def change_velocity(self, frequency):
