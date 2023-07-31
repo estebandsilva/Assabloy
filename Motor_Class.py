@@ -121,7 +121,7 @@ class Motor:
 
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.HIGH)
+        GPIO.output(self._DIR_out, GPIO.LOW)
 
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
@@ -130,7 +130,7 @@ class Motor:
         #GPIO.output(self._ENA, GPIO.LOW)
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.LOW)
+        GPIO.output(self._DIR_out, GPIO.HIGH)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def change_velocity(self, frequency):
@@ -158,7 +158,7 @@ class Motor:
 
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)*0.5))
-        GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
+        #GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.direction_change_false)
 
