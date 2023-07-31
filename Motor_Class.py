@@ -66,7 +66,6 @@ class Motor:
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_ini, GPIO.IN)
         GPIO.setup(self._SW_fin, GPIO.IN)
-        sleep(20)
         #self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.pwm = Adafruit_PCA9685.PCA9685()
         self.pwm.set_pwm_freq(self._max_freq)
@@ -122,7 +121,7 @@ class Motor:
 
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.HIGH)
+        GPIO.output(self._DIR_out, GPIO.LOW)
 
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
@@ -131,7 +130,7 @@ class Motor:
         #GPIO.output(self._ENA, GPIO.LOW)
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.LOW)
+        GPIO.output(self._DIR_out, GPIO.HIGH)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def change_velocity(self, frequency):
