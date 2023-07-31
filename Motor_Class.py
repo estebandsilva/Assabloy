@@ -95,9 +95,9 @@ class Motor:
 
     def direction_change(self,channel):
         if GPIO.input(self._DIR_in):
-            self.direction = True
-        else:
             self.direction = False
+        else:
+            self.direction = True
 
     def direction_change_true(self, channel):
         if self.movement:
