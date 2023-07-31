@@ -64,8 +64,8 @@ class Motor:
         GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self._SW_ini, GPIO.IN)
+        GPIO.setup(self._SW_fin, GPIO.IN)
         #self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.pwm = Adafruit_PCA9685.PCA9685()
         self.pwm.set_pwm_freq(self._max_freq)
@@ -78,7 +78,7 @@ class Motor:
         else:
             self.total_pulses -=1
         self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
-        #print("Pulses=",self.total_pulses, " Position=", self.position)
+        print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
         if self.direction==False:
