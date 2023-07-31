@@ -3,10 +3,10 @@
 #pipreqs --force
 
 import threading
-import subprocess
-import sys
-subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
-subprocess.check_call([sys.executable, "-m", "pip", "install", "Adafruit-PCA9685"])
+#import subprocess
+#import sys
+#subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+#subprocess.check_call([sys.executable, "-m", "pip", "install", "Adafruit-PCA9685"])
 
 from Sequencia_Class import *
 #from Motor_Class import *
