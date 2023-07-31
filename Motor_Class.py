@@ -110,7 +110,7 @@ class Motor:
 
     def direction_change_false(self, channel):
         if self.movement and GPIO.input(self._SW_fin):
-            print("SWITCH FIN")
+            print("SWITCH FIN-", self._SW_fin)
             self.backward()
         if self._calibration_bool == True and self._SW_fin_bool == False:
             self.max_pulses = self.total_pulses
