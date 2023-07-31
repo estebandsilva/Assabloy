@@ -3,12 +3,11 @@ from Motor_Class import *
 class Sequencia:
     def __init__(self, SW_emergency):
 
-
         self._SW_emergency = SW_emergency
-        self.motor_X = Motor(ENA = 17, PUL_out = 18, DIR_out = 27, PUL_in = 7, DIR_in = 12 , SW_ini = 23, SW_fin = 24)
-        #self.motor_Y = Motor(ENA = 14, PUL_out = 18, DIR_out = 15, PUL_in = 12, DIR_in = 7 , SW_ini = 23, SW_fin = 24)
+        self.motor_X = Motor(ENA =  6, PUL_out = 0, DIR_out = 25, PUL_in = 23, DIR_in = 17 , SW_ini = 12, SW_fin = 20, radius = 24)
+        #self.motor_Y = Motor(ENA = 24, PUL_out = 3, DIR_out = 16, PUL_in = 22, DIR_in = 18 , SW_ini = [4, 27], SW_fin = [21, 13], radius = 15)
 
-        #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
+        GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
 
         print("Foward ")
 
@@ -59,7 +58,7 @@ class Sequencia:
             X_bool, Y_bool = False, False
             while X_bool==False or Y_bool==False:
                 X_bool = self.go_to(self.motor_X, x)
-                #Y_bool = self.go_to(self.motor_Y,Y)
+                #Y_bool = self.go_to(self.motor_Y,y)
                 Y_bool = True
     def origin(self):
         self.go_to_2D(0,0)
@@ -67,4 +66,4 @@ class Sequencia:
     def trajectory(self):
         pass
 
-sequencia = Sequencia(SW_emergency=None)
+sequencia = Sequencia(SW_emergency=19)

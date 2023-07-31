@@ -16,14 +16,20 @@ class Motor:
     _pulses_per_rev = _microsteps*200  # 200 pulses per revolution
     _max_rev_min = 200 # maximum revolution per minute
     _min_rev_min = 50  # maximum revolution per minute
-    _distance_per_rev = 2*math.pi*10 # mm per revolution
-    _max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima in HZ
-    _min_freq = round(_pulses_per_rev * _min_rev_min/60)  # frequency minimum IN Hz
+    #_distance_per_rev = 2*math.pi*10 # mm per revolution
+    #_max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima in HZ
+    #_min_freq = round(_pulses_per_rev * _min_rev_min/60)  # frequency minimum IN Hz
     _duty_cycle = 50
 
 
     # constructor
-    def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin):
+    def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin, radius=24):
+
+        self.radius = radius # radius of the polea in mm
+        self._distance_per_rev = 2 * math.pi * self.radius  # mm per revolution
+        self._max_freq = round(self._pulses_per_rev * self._max_rev_min / 60)  # frequency maxima in HZ
+        self._min_freq = round(self._pulses_per_rev * self._min_rev_min / 60)  # frequency minimum IN Hz
+
         self.total_pulses = 0
         self.position = 0
         self.max_pulses = 5000
@@ -33,7 +39,7 @@ class Motor:
         self._accuacy_pulses = math.ceil((self._accuacy /self._distance_per_rev)*self._pulses_per_rev)
 
         self._ENA = ENA # (High to BLOCK / LOW to mOVE).
-        self._PUL_out = PUL_out
+        #self._PUL_out = PUL_out
         self._DIR_out = DIR_out
         self._PUL_in = PUL_in
         self._DIR_in = DIR_in
@@ -48,13 +54,13 @@ class Motor:
         self._SW_fin_bool = False
         self._calibration_bool = False
 
-        self.PUL_pwm = 0
+        self.PUL_pwm = PUL_out
 
 
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
-        GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
+        #GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
         GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
