@@ -61,7 +61,7 @@ class Motor:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
         #GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
-        GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.LOW)
+        GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(self._SW_ini, GPIO.IN)
@@ -95,9 +95,9 @@ class Motor:
 
     def direction_change(self,channel):
         if GPIO.input(self._DIR_in):
-            self.direction = False
-        else:
             self.direction = True
+        else:
+            self.direction = False
 
     def direction_change_true(self, channel):
         if self.movement:
@@ -121,7 +121,7 @@ class Motor:
 
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.LOW)
+        GPIO.output(self._DIR_out, GPIO.HIGH)
 
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
@@ -130,7 +130,7 @@ class Motor:
         #GPIO.output(self._ENA, GPIO.LOW)
         if self.movement==False:
             self.start()
-        GPIO.output(self._DIR_out, GPIO.HIGH)
+        GPIO.output(self._DIR_out, GPIO.LOW)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def change_velocity(self, frequency):
