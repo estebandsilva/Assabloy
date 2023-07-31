@@ -4,6 +4,7 @@
 
 import threading
 install_all = True
+
 if install_all:
     import subprocess
     import sys
