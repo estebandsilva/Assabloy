@@ -100,6 +100,7 @@ class Motor:
             self.direction = False
 
     def direction_change_true(self, channel):
+        print("SWITCH INI")
         if self.movement:
             self.foward()
         if self._calibration_bool == True and self._SW_ini_bool == False:
@@ -108,6 +109,7 @@ class Motor:
 
 
     def direction_change_false(self, channel):
+        print("SWITCH FIN")
         if self.movement:
             self.backward()
         if self._calibration_bool == True and self._SW_fin_bool == False:
