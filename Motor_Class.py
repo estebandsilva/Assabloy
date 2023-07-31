@@ -101,7 +101,7 @@ class Motor:
 
     def direction_change_true(self, channel):
         if self.movement and GPIO.input(self._SW_ini):
-            print("SWITCH INI")
+            print("SWITCH INI-", self._SW_ini)
             self.foward()
         if self._calibration_bool == True and self._SW_ini_bool == False:
             self.total_pulses = 0
