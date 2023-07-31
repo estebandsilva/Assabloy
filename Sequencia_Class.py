@@ -11,16 +11,17 @@ class Sequencia:
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
 
         print("Foward ")
-
-        self.motor_X.calibration()
-        #self.motor_Y.calibration()
-        self.motor_X.stop()
-        self.stop()
-        sleep(0.5)
-
         self.motor_X.foward()
-        sleep(3)
-        self.origin()
+
+        #self.motor_X.calibration()
+        #self.motor_Y.calibration()
+        #self.motor_X.stop()
+        #self.stop()
+        #sleep(0.5)
+
+        #self.motor_X.foward()
+        #sleep(3)
+        #self.origin()
 
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
