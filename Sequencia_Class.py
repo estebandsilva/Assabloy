@@ -4,8 +4,8 @@ class Sequencia:
     def __init__(self, SW_emergency):
 
         self._SW_emergency = SW_emergency
-        self.motor_X = Motor(ENA =  6, PUL_out = 0, DIR_out = 25, PUL_in = 23, DIR_in = 17 , SW_ini = 12, SW_fin = 20, radius = 24)
-        #self.motor_Y = Motor(ENA = 24, PUL_out = 3, DIR_out = 16, PUL_in = 22, DIR_in = 18 , SW_ini = [4, 27], SW_fin = [21, 13], radius = 15)
+        self.motor_X = Motor(ENA =  6, PUL_out = 3, DIR_out = 25, PUL_in = 23, DIR_in = 17 , SW_ini = 12, SW_fin = 20, radius = 24)
+        #self.motor_Y = Motor(ENA = 24, PUL_out = 0, DIR_out = 16, PUL_in = 22, DIR_in = 18 , SW_ini = [4, 27], SW_fin = [21, 13], radius = 15)
 
         GPIO.setup(self._SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
