@@ -3,7 +3,8 @@
 #pipreqs --force
 
 import threading
-install_all = False
+install_all = True
+
 
 if install_all:
     import subprocess
