@@ -3,12 +3,13 @@
 #pipreqs --force
 
 import threading
-install_all = False
+install_all = True
 
 
 if install_all:
     import subprocess
     import sys
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "Adafruit-PCA9685"])
 

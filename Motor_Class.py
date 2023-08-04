@@ -62,10 +62,10 @@ class Motor:
         GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
         #GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
         GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
-        GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.pwm = Adafruit_PCA9685.PCA9685()
         self.pwm.set_pwm_freq(self._max_freq)
@@ -100,7 +100,7 @@ class Motor:
             self.direction = False
 
     def direction_change_true(self, channel):
-        if self.movement and GPIO.input(self._SW_ini):
+        if self.movement and GPIO.input(self._SW_ini)==False:
             print("SWITCH INI-", self._SW_ini)
             self.foward()
         if self._calibration_bool == True and self._SW_ini_bool == False:
@@ -109,7 +109,7 @@ class Motor:
 
 
     def direction_change_false(self, channel):
-        if self.movement and GPIO.input(self._SW_fin):
+        if self.movement and GPIO.input(self._SW_fin)==False:
             print("SWITCH FIN-", self._SW_fin)
             self.backward()
         if self._calibration_bool == True and self._SW_fin_bool == False:
@@ -161,8 +161,8 @@ class Motor:
     def setup(self):
         GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)*0.5))
         GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
-        GPIO.add_event_detect(self._SW_ini, GPIO.RISING, callback=self.direction_change_true)
-        GPIO.add_event_detect(self._SW_fin, GPIO.RISING, callback=self.direction_change_false)
+        GPIO.add_event_detect(self._SW_ini, GPIO.FALLING, callback=self.direction_change_true)
+        GPIO.add_event_detect(self._SW_fin, GPIO.FALLING, callback=self.direction_change_false)
 
 
     def calibration(self):
