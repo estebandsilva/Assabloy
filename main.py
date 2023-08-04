@@ -11,7 +11,7 @@ if install_all:
     import sys
     subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
     subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "Adafruit-PCA9685"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "Adafruit-PCA9685==1.0.1"])
 
 
 from Sequencia_Class import *
