@@ -14,7 +14,7 @@ import Adafruit_PCA9685
 class Motor:
     _microsteps = 1 # microsteps to divide --> Change with Microstep Driver
     _pulses_per_rev = _microsteps*200  # 200 pulses per revolution
-    _max_rev_min = 200-70 # maximum revolution per minute
+    _max_rev_min = 200-80 # maximum revolution per minute
     _min_rev_min = 50  # maximum revolution per minute
     #_distance_per_rev = 2*math.pi*10 # mm per revolution
     #_max_freq = round(_pulses_per_rev*_max_rev_min/60) # frequency maxima in HZ
