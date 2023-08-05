@@ -30,7 +30,7 @@ class Sequencia:
 
     def stop(self):
         self.motor_X.stop()
-        #self.motor_Y.stop()
+        self.motor_Y.stop()
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses

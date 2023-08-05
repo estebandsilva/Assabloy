@@ -49,5 +49,6 @@ if __name__ == '__main__':
 
 
     except KeyboardInterrupt:
+            sequencia.stop()
             print("cleanup")
             GPIO.cleanup()
