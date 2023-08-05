@@ -159,7 +159,11 @@ class Motor:
 
 
     def setup(self):
-        GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=round(1000*(1/self._max_freq)*0.5))
+        time_bounce = round(1000*(1/self._max_freq)*0.9)
+        if time_bounce>0:
+            GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=time_bounce)
+        else:
+            GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
         GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.FALLING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.FALLING, callback=self.direction_change_false)
