@@ -164,6 +164,7 @@ class Motor:
             GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=time_bounce)
         else:
             GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
+
         GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.FALLING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.FALLING, callback=self.direction_change_false)
