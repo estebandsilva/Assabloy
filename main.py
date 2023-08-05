@@ -3,7 +3,7 @@
 #pipreqs --force
 
 import threading
-install_all = True
+install_all = False
 
 
 if install_all:
