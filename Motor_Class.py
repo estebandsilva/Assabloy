@@ -23,9 +23,10 @@ class Motor:
 
 
     # constructor
-    def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin, radius=24):
+    def __init__(self, ENA, PUL_out, DIR_out, PUL_in, DIR_in, SW_ini, SW_fin, radius=24, distance=1755):
 
         self.radius = radius # radius of the polea in mm
+        self.distance = distance
         self._distance_per_rev = 2 * math.pi * self.radius  # mm per revolution
         self._max_freq = round(self._pulses_per_rev * self._max_rev_min / 60)  # frequency maxima in HZ
         self._min_freq = round(self._pulses_per_rev * self._min_rev_min / 60)  # frequency minimum IN Hz
@@ -33,8 +34,8 @@ class Motor:
 
         self.total_pulses = 0
         self.position = 0
-        self.max_pulses = 5000
-        self.max_disp = (2000/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
+        self.max_pulses = 1300
+        self.max_disp = (1755/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
 
         self._accuacy = 1/2  # accuracy in mm
         self._accuacy_pulses = math.ceil((self._accuacy /self._distance_per_rev)*self._pulses_per_rev)
@@ -76,7 +77,7 @@ class Motor:
             self.total_pulses +=1
         else:
             self.total_pulses -=1
-        self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
+        self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev*(self.distance/self.total_pulses)
         print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
@@ -105,7 +106,7 @@ class Motor:
                 self.foward()
             if self._calibration_bool == True and self._SW_ini_bool == False:
                 self.total_pulses = 0
-                self.position = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev
+                self.position = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.total_pulses)
                 self._SW_ini_bool = True
 
 
@@ -115,9 +116,9 @@ class Motor:
                 print("SWITCH FIN-", self._SW_fin)
                 self.backward()
             if self._calibration_bool == True and self._SW_fin_bool == False:
-                self.position = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev
+                self.position = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.total_pulses)
                 self.max_pulses = self.total_pulses
-                self.max_disp = (self.max_pulses / self._pulses_per_rev) * self._distance_per_rev
+                self.max_disp = (self.max_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.total_pulses)
                 self._SW_fin_bool = True
 
 
