@@ -15,9 +15,6 @@ if install_all:
 
 
 from Sequencia_Class import *
-#from Motor_Class import *
-
-#motor_X = Motor(ENA = 17, PUL_out = 18, DIR_out = 27, PUL_in = 7, DIR_in = 12 , SW_ini = 23, SW_fin = 24)
 
 def pwm_task():
     sleep(0)
