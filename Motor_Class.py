@@ -29,6 +29,7 @@ class Motor:
         self._distance_per_rev = 2 * math.pi * self.radius  # mm per revolution
         self._max_freq = round(self._pulses_per_rev * self._max_rev_min / 60)  # frequency maxima in HZ
         self._min_freq = round(self._pulses_per_rev * self._min_rev_min / 60)  # frequency minimum IN Hz
+        print("Frequency=", self._max_freq)
 
         self.total_pulses = 0
         self.position = 0
