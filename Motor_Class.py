@@ -77,7 +77,7 @@ class Motor:
             self.total_pulses +=1
         else:
             self.total_pulses -=1
-        self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev*(self.distance/self.total_pulses)
+        self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev*(self.distance/self.max_pulses)
         print("Pulses=",self.total_pulses, " Position=", self.position)
 
     def change_direction(self, channel):
@@ -106,7 +106,7 @@ class Motor:
                 self.foward()
             if self._calibration_bool == True and self._SW_ini_bool == False:
                 self.total_pulses = 0
-                self.position = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.total_pulses)
+                self.position = 0
                 self._SW_ini_bool = True
 
 
@@ -116,9 +116,9 @@ class Motor:
                 print("SWITCH FIN-", self._SW_fin)
                 self.backward()
             if self._calibration_bool == True and self._SW_fin_bool == False:
-                self.position = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.total_pulses)
+                self.position = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.max_pulses)
                 self.max_pulses = self.total_pulses
-                self.max_disp = (self.max_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.total_pulses)
+                self.max_disp = (self.max_pulses / self._pulses_per_rev) * self._distance_per_rev*(self.distance/self.max_pulses)
                 self._SW_fin_bool = True
 
 
