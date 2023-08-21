@@ -193,9 +193,9 @@ class Motor:
                     pass
                 else:
                     break
-        print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses)
+        print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses, " Position =", self.position)
 
-        print("Calibration Initial: Started 2. Actual Pulses = ", self.total_pulses)
+        print("Calibration Initial: Started 2. Actual Pulses = ", self.total_pulses, " Position =", self.position)
         self.backward()
         self._SW_ini_bool = False
         while self._calibration_bool:
