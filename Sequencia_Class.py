@@ -13,6 +13,7 @@ class Sequencia:
         print("Foward ")
         #self.motor_X.foward()
         #self.motor_Y.foward()
+        self.stop()
 
         self.motor_X.calibration()
         #self.motor_Y.calibration()
