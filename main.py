@@ -26,6 +26,8 @@ def print_task():
     #print("Pulses=", sequencia.motor_X.total_pulses, " Position=", sequencia.motor_X.position)
     pass
 # Press the green button in the gutter to run the script.
+
+
 if __name__ == '__main__':
     print("Test Begin 2")
 

@@ -60,13 +60,11 @@ class Motor:
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
-        #GPIO.setup(self._PUL_out, GPIO.OUT, initial = GPIO.LOW)
         GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        #self.pwm = GPIO.PWM(self._PUL_out, self._max_freq)  # create PWM instance with frequency
         self.pwm = Adafruit_PCA9685.PCA9685()
         self.pwm.set_pwm_freq(self._max_freq)
         self.setup()
@@ -100,21 +98,23 @@ class Motor:
             self.direction = False
 
     def direction_change_true(self, channel):
-        if self.movement and GPIO.input(self._SW_ini)==False:
-            print("SWITCH INI-", self._SW_ini)
-            self.foward()
-        if self._calibration_bool == True and self._SW_ini_bool == False:
-            self.total_pulses = 0
-            self._SW_ini_bool = True
+        if GPIO.input(self._SW_fin)==False:
+            if self.movement:
+                print("SWITCH INI-", self._SW_ini)
+                self.foward()
+            if self._calibration_bool == True and self._SW_ini_bool == False:
+                self.total_pulses = 0
+                self._SW_ini_bool = True
 
 
     def direction_change_false(self, channel):
-        if self.movement and GPIO.input(self._SW_fin)==False:
-            print("SWITCH FIN-", self._SW_fin)
-            self.backward()
-        if self._calibration_bool == True and self._SW_fin_bool == False:
-            self.max_pulses = self.total_pulses
-            self._SW_fin_bool = True
+        if GPIO.input(self._SW_fin)==False:
+            if self.movement:
+                print("SWITCH FIN-", self._SW_fin)
+                self.backward()
+            if self._calibration_bool == True and self._SW_fin_bool == False:
+                self.max_pulses = self.total_pulses
+                self._SW_fin_bool = True
 
 
     def foward(self):
@@ -124,7 +124,6 @@ class Motor:
         if self.movement==False:
             self.start()
         GPIO.output(self._DIR_out, GPIO.HIGH)
-
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
 
     def backward(self):
