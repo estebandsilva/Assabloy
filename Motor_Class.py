@@ -37,10 +37,12 @@ class Motor:
         self.position = 0
         self.max_pulses = 1300
         self.max_disp = (1755/self._distance_per_rev)*self._pulses_per_rev  # maximum steps of all displacment
+        self.puls_per_dist = self.max_disp/self.max_pulses
 
-        self._accuacy = 1/2  # accuracy in mm
-        self._accuacy_pulses = math.ceil((self._accuacy /self._distance_per_rev)*self._pulses_per_rev)
-        self._accuacy_pulses= 1
+        self._accuacy = 1  # accuracy in mm
+        self._accuacy_pulses = math.ceil(self._accuacy*self.puls_per_dist)
+        if self._accuacy_pulses<1:
+            self._accuacy_pulses = 1
 
         self._ENA = ENA # (High to BLOCK / LOW to mOVE).
         #self._PUL_out = PUL_out
@@ -121,6 +123,10 @@ class Motor:
             if self._calibration_bool == True and self._SW_fin_bool == False:
                 self.max_pulses = self.total_pulses
                 self.max_disp = (self.max_pulses)*(self.distance/self.max_pulses)
+                self.puls_per_dist = self.max_disp / self.max_pulses
+                self._accuacy_pulses = math.ceil(self._accuacy * self.puls_per_dist)
+                if self._accuacy_pulses < 1:
+                    self._accuacy_pulses = 1
                 self._SW_fin_bool = True
 
 
