@@ -185,29 +185,42 @@ class Motor:
         print("Calibration Initial: Started 1. Actual Pulses = ", self.total_pulses, " Position =",  round(self.position,2))
         self.backward()
         while self._calibration_bool:
-            if self._SW_ini_bool == False:
-                pass
-            else:
-                break
+            try:
+                while True:
+                    if self._SW_ini_bool == False:
+                        pass
+                    else:
+                        break
+            except KeyboardInterrupt:
+                self.stop()
         print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses, " Position =", round(self.position,2))
         print("Calibration Final: Started.")
         self.foward()
         self._SW_fin_bool = False
         while self._calibration_bool:
-                if self._SW_fin_bool == False:
-                    pass
-                else:
-                    break
+            try:
+                while True:
+                    if self._SW_fin_bool == False:
+                        pass
+                    else:
+                        break
+            except KeyboardInterrupt:
+                self.stop()
+
         print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses, " Position =",  round(self.position,2))
 
         print("Calibration Initial: Started 2. Actual Pulses = ", self.total_pulses, " Position =",  round(self.position,2))
         self.backward()
         self._SW_ini_bool = False
         while self._calibration_bool:
-            if self._SW_ini_bool == False:
-                pass
-            else:
-                break
+            try:
+                while True:
+                    if self._SW_ini_bool == False:
+                        pass
+                    else:
+                        break
+            except KeyboardInterrupt:
+                self.stop()
         print("Calibration Initial: Completed 2. Actual Pulses = ", self.total_pulses, " Position =",  round(self.position,2))
         self._calibration_bool = False
         print("Calibration: Completed.")

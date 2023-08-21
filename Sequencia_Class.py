@@ -13,8 +13,7 @@ class Sequencia:
         print("Foward ")
         self.motor_X.foward()
         self.motor_Y.foward()
-        sleep(30)
-
+        sleep(0.5)
 
         self.stop()
         sleep(0.5)
@@ -53,7 +52,7 @@ class Sequencia:
         elif final_pulse< 0:
             final_pulse = 0
 
-        #print("Origin = ",origin_pulse, " --> Final=", final_pulse, " Accuracy=", motor._accuacy_pulses )
+        print("Origin = ",origin_pulse, " --> Final=", final_pulse, " Accuracy=", motor._accuacy_pulses )
         if origin_pulse < final_pulse - motor._accuacy_pulses:
             motor.foward()
             return False
@@ -69,13 +68,16 @@ class Sequencia:
 
         X_i = self.create_list(origin_x, X_fin, 10)
         Y_i = self.create_list(origin_y, Y_fin, 10)
-        #Y_i = X_i
+
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
             while X_bool==False or Y_bool==False:
-                X_bool = self.go_to(self.motor_X, x)
-                Y_bool = self.go_to(self.motor_Y,y)
-
+                try:
+                    while True:
+                        X_bool = self.go_to(self.motor_X, x)
+                        Y_bool = self.go_to(self.motor_Y, y)
+                except KeyboardInterrupt:
+                    self.stop()
     def origin(self):
         self.go_to_2D(0,0)
 
