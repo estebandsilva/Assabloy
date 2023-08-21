@@ -67,7 +67,7 @@ class Sequencia:
         X_i = self.create_list(origin_x, X_fin, 10)
         Y_i = self.create_list(origin_y, Y_fin, 10)
         print("LIST Xi -> ", X_i)
-        print("LIST Yi -> ", X_i)
+        print("LIST Yi -> ", Y_i)
 
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
