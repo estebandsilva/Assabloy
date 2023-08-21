@@ -80,7 +80,7 @@ class Sequencia:
         self.stop()
 
     def move_1D(self, motor, move):
-        origin = self.motor.position
+        origin = motor.position
         X_fin = abs(origin + move)
 
         X_i = self.create_list(origin, X_fin, 2)
@@ -90,7 +90,7 @@ class Sequencia:
             X_bool = False
             while X_bool == False:
                 try:
-                    X_bool = self.go_to(self.motor, x)
+                    X_bool = self.go_to(motor, x)
                 except KeyboardInterrupt:
                     self.stop()
         self.stop()
