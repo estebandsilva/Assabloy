@@ -77,6 +77,7 @@ class Sequencia:
                     Y_bool = self.go_to(self.motor_Y, y)
                 except KeyboardInterrupt:
                     self.stop()
+
     def origin(self):
         self.go_to_2D(0,0)
 
