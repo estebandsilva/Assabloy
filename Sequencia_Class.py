@@ -26,6 +26,7 @@ class Sequencia:
         self.motor_Y.foward()
         sleep(0.5)
         self.origin()
+        sleep(3)
         self.motor_X.foward()
         self.motor_Y.foward()
         sleep(0.5)

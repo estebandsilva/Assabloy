@@ -41,8 +41,8 @@ class Motor:
 
         self._accuacy = 1  # accuracy in mm
         self._accuacy_pulses = math.ceil(self._accuacy*self.puls_per_dist)
-        if self._accuacy_pulses<1:
-            self._accuacy_pulses = 1
+        if self._accuacy_pulses<2:
+            self._accuacy_pulses = 2
 
         self._ENA = ENA # (High to BLOCK / LOW to mOVE).
         #self._PUL_out = PUL_out
