@@ -104,6 +104,7 @@ class Motor:
                 self.foward()
             if self._calibration_bool == True and self._SW_ini_bool == False:
                 self.total_pulses = 0
+                self.max_disp = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
                 self._SW_ini_bool = True
 
 
@@ -114,6 +115,8 @@ class Motor:
                 self.backward()
             if self._calibration_bool == True and self._SW_fin_bool == False:
                 self.max_pulses = self.total_pulses
+                self.max_disp = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev
+
                 self._SW_fin_bool = True
 
 
@@ -175,14 +178,14 @@ class Motor:
         self._SW_fin_bool = False
         self._calibration_bool = True
         print("Calibration: Started.")
-        print("Calibration Initial: Started 1. Actual Pulses = ", self.total_pulses)
+        print("Calibration Initial: Started 1. Actual Pulses = ", self.total_pulses, " Position =" self.position)
         self.backward()
         while self._calibration_bool:
             if self._SW_ini_bool == False:
                 pass
             else:
                 break
-        print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses)
+        print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses, " Position =" self.position)
         print("Calibration Final: Started.")
         self.foward()
         self._SW_fin_bool = False
@@ -201,9 +204,10 @@ class Motor:
                 pass
             else:
                 break
-        print("Calibration Initial: Completed 2. Actual Pulses = ", self.total_pulses)
+        print("Calibration Initial: Completed 2. Actual Pulses = ", self.total_pulses, " Position =" self.position)
         self._calibration_bool = False
         print("Calibration: Completed.")
+        print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses, "Total Max Distance = ", self.max_disp)
         self.stop()
         print("Stop Motors")
 
