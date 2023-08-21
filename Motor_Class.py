@@ -83,7 +83,7 @@ class Motor:
             self.total_pulses -=1
         #self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev*(self.distance/self.max_pulses)
         self.position = (self.total_pulses)* (self.distance / self.max_pulses)
-        print("Pulses=",self.total_pulses, " Position=", round(self.position,2))
+       # print("Pulses=",self.total_pulses, " Position=", round(self.position,2))
 
     def change_direction(self, channel):
         if self.direction==False:
