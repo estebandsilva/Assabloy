@@ -21,8 +21,11 @@ class Sequencia:
         self.stop()
         #self.origin()
 
-        #self.motor_X.foward()
-        #self.motor_Y.foward()
+        self.motor_X.foward()
+        self.motor_Y.foward()
+        sleep(5)
+
+        self.origin()
 
         #self.motor_X.stop()
         #self.stop()
