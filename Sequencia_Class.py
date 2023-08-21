@@ -76,8 +76,8 @@ class Sequencia:
 
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
-            print("X - Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position, 2)," Fin=", round(x, 2))
-            print("Y - Pulses=", sequencia.motor_Y.total_pulses, " Position=", round(sequencia.motor_Y.position, 2)," Fin=", round(y, 2))
+            print("X - Pulses=", self.motor_X.total_pulses, " Position=", round(self.motor_X.position, 2)," Fin=", round(x, 2))
+            print("Y - Pulses=", self.motor_Y.total_pulses, " Position=", round(self.motor_Y.position, 2)," Fin=", round(y, 2))
             while X_bool==False or Y_bool==False:
                 try:
                     X_bool = self.go_to(self.motor_X, x)
