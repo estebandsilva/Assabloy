@@ -46,6 +46,7 @@ class Sequencia:
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses
+        print("Final_disp =", final_disp)
         final_pulse = round(final_disp*motor.puls_per_dist)
         if final_pulse> motor.max_pulses:
            final_pulse = motor.max_pulses
@@ -68,6 +69,8 @@ class Sequencia:
 
         X_i = self.create_list(origin_x, X_fin, 10)
         Y_i = self.create_list(origin_y, Y_fin, 10)
+        print("LIST -> ", X_i)
+
 
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
