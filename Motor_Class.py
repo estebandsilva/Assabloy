@@ -186,26 +186,27 @@ class Motor:
         self.backward()
         while self._calibration_bool:
             try:
-                while True:
-                    if self._SW_ini_bool == False:
-                        pass
-                    else:
-                        break
+                if self._SW_ini_bool == False:
+                    pass
+                else:
+                    break
             except KeyboardInterrupt:
                 self.stop()
+                GPIO.cleanup()
+
         print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses, " Position =", round(self.position,2))
         print("Calibration Final: Started.")
         self.foward()
         self._SW_fin_bool = False
         while self._calibration_bool:
             try:
-                while True:
-                    if self._SW_fin_bool == False:
-                        pass
-                    else:
-                        break
+                if self._SW_fin_bool == False:
+                    pass
+                else:
+                    break
             except KeyboardInterrupt:
                 self.stop()
+                GPIO.cleanup()
 
         print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses, " Position =",  round(self.position,2))
 
@@ -214,13 +215,14 @@ class Motor:
         self._SW_ini_bool = False
         while self._calibration_bool:
             try:
-                while True:
-                    if self._SW_ini_bool == False:
-                        pass
-                    else:
-                        break
+                if self._SW_ini_bool == False:
+                    pass
+                else:
+                    break
             except KeyboardInterrupt:
                 self.stop()
+                GPIO.cleanup()
+
         print("Calibration Initial: Completed 2. Actual Pulses = ", self.total_pulses, " Position =",  round(self.position,2))
         self._calibration_bool = False
         print("Calibration: Completed.")
