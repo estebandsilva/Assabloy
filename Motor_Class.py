@@ -167,7 +167,7 @@ class Motor:
         GPIO.output(self._ENA, GPIO.LOW)
         #self.pwm.stop()
         self.pwm.set_pwm(self.PUL_pwm, 0, 0)
-        sleep(0.01)
+        #sleep(0.01)
 
 
     def setup(self):
