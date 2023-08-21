@@ -1,9 +1,9 @@
 Adafruit-PCA9685==1.0.1
 RPi.GPIO_def==0.2
 urllib3==1.26.6
-PySide2==5.15.2.1
-PySide6==6.5.0
+PySide2
+PySide6==6.5.2
 pyqt5==5.15.9
 pycairo==1.24.0
 pipwin==0.5.2
-QT-PyQt-PySide-Custom-Widgets==0.6.4
+QT-PyQt-PySide-Custom-Widgets==0.6.7
