@@ -67,8 +67,8 @@ class Sequencia:
         origin_x = self.motor_X.position
         origin_y = self.motor_Y.position
 
-        X_i = self.create_list(origin_x, X_fin, 100)
-        Y_i = self.create_list(origin_y, Y_fin, 100)
+        X_i = self.create_list(origin_x, X_fin, 10)
+        Y_i = self.create_list(origin_y, Y_fin, 10)
         print("LIST -> ", X_i)
 
 
