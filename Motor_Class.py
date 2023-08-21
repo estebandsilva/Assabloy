@@ -161,7 +161,7 @@ class Motor:
 
 
     def setup(self):
-        time_bounce = round(1000*(1/self._max_freq)*0.9)
+        time_bounce = round(1000*(1/self._max_freq)*0.9)*0
         if time_bounce>0:
             GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses, bouncetime=time_bounce)
         else:
