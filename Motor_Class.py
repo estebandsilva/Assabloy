@@ -39,6 +39,7 @@ class Motor:
 
         self._accuacy = 1/2  # accuracy in mm
         self._accuacy_pulses = math.ceil((self._accuacy /self._distance_per_rev)*self._pulses_per_rev)
+        self._accuacy_pulses= 1
 
         self._ENA = ENA # (High to BLOCK / LOW to mOVE).
         #self._PUL_out = PUL_out
@@ -79,7 +80,7 @@ class Motor:
             self.total_pulses -=1
         #self.position = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev*(self.distance/self.max_pulses)
         self.position = (self.total_pulses)* (self.distance / self.max_pulses)
-        print("Pulses=",self.total_pulses, " Position=", self.position)
+        print("Pulses=",self.total_pulses, " Position=", round(self.position,2))
 
     def change_direction(self, channel):
         if self.direction==False:
@@ -180,14 +181,14 @@ class Motor:
         self._SW_fin_bool = False
         self._calibration_bool = True
         print("Calibration: Started.")
-        print("Calibration Initial: Started 1. Actual Pulses = ", self.total_pulses, " Position =", self.position)
+        print("Calibration Initial: Started 1. Actual Pulses = ", self.total_pulses, " Position =",  round(self.position,2))
         self.backward()
         while self._calibration_bool:
             if self._SW_ini_bool == False:
                 pass
             else:
                 break
-        print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses, " Position =", self.position)
+        print("Calibration Initial: Completed 1. Actual Pulses = ", self.total_pulses, " Position =", round(self.position,2))
         print("Calibration Final: Started.")
         self.foward()
         self._SW_fin_bool = False
@@ -196,9 +197,9 @@ class Motor:
                     pass
                 else:
                     break
-        print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses, " Position =", self.position)
+        print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses, " Position =",  round(self.position,2))
 
-        print("Calibration Initial: Started 2. Actual Pulses = ", self.total_pulses, " Position =", self.position)
+        print("Calibration Initial: Started 2. Actual Pulses = ", self.total_pulses, " Position =",  round(self.position,2))
         self.backward()
         self._SW_ini_bool = False
         while self._calibration_bool:
@@ -206,7 +207,7 @@ class Motor:
                 pass
             else:
                 break
-        print("Calibration Initial: Completed 2. Actual Pulses = ", self.total_pulses, " Position =", self.position)
+        print("Calibration Initial: Completed 2. Actual Pulses = ", self.total_pulses, " Position =",  round(self.position,2))
         self._calibration_bool = False
         print("Calibration: Completed.")
         print("Calibration Final: Completed.  Total Max Pulse = ", self.max_pulses, "Total Max Distance = ", self.max_disp)
