@@ -31,11 +31,13 @@ if __name__ == '__main__':
     try:
         while True:
             #motor_X.calibration()
-            sleep(4)
+            sleep(1)
             #print("Test Begin")
 
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
-            print("Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position,2))
+            #print("Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position,2))
+            print("X - Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position, 2))
+            print("Y - Pulses=", sequencia.motor_Y.total_pulses, " Position=", round(sequencia.motor_Y.position, 2))
             #pwm_thread = threading.Thread(target=pwm_task)
             #print_thread = threading.Thread(target=print_task)
 
