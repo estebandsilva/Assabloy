@@ -73,9 +73,8 @@ class Sequencia:
             X_bool, Y_bool = False, False
             while X_bool==False or Y_bool==False:
                 try:
-                    while True:
-                        X_bool = self.go_to(self.motor_X, x)
-                        Y_bool = self.go_to(self.motor_Y, y)
+                    X_bool = self.go_to(self.motor_X, x)
+                    Y_bool = self.go_to(self.motor_Y, y)
                 except KeyboardInterrupt:
                     self.stop()
     def origin(self):
