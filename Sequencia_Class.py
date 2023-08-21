@@ -46,7 +46,7 @@ class Sequencia:
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses
-        final_pulse = round(final_disp*self.puls_per_dist)
+        final_pulse = round(final_disp*motor.puls_per_dist)
         if final_pulse> motor.max_pulses:
            final_pulse = motor.max_pulses
         elif final_pulse< 0:
