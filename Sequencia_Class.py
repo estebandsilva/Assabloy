@@ -15,8 +15,8 @@ class Sequencia:
         self.motor_Y.foward()
         sleep(0.5)
 
-        self.stop()
-        sleep(0.5)
+        #self.stop()
+        #sleep(0.5)
         self.motor_X.calibration()
         self.motor_Y.calibration()
         self.stop()

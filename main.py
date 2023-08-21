@@ -32,7 +32,9 @@ if __name__ == '__main__':
         while True:
             #motor_X.calibration()
             sleep(1)
-            #print("Test Begin")
+
+            #
+            print("Test Begin")
 
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
             #print("Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position,2))
