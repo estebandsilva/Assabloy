@@ -4,5 +4,3 @@ urllib3==1.26.6
 pycairo==1.24.0
 pipwin==0.5.2
 QT-PyQt-PySide-Custom-Widgets==0.6.7
-PySide6==6.5.2
-pyqt5==5.15.9
