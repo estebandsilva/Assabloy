@@ -26,6 +26,9 @@ class Sequencia:
         self.motor_Y.foward()
         sleep(0.5)
         self.origin()
+        self.motor_X.foward()
+        self.motor_Y.foward()
+        sleep(0.5)
         self.go_to_2D(50,self.motor_Y.max_disp)
 
         #self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
