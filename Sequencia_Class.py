@@ -14,13 +14,13 @@ class Sequencia:
         #self.motor_X.foward()
         #self.motor_Y.foward()
 
-        self.motor_X.calibration()
+        #self.motor_X.calibration()
         #self.motor_Y.calibration()
         #self.stop()
         #self.origin()
 
-        #self.motor_X.foward()
-        #self.motor_Y.foward()
+        self.motor_X.foward()
+        self.motor_Y.foward()
 
         #self.motor_X.stop()
         #self.stop()
