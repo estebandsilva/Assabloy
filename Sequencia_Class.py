@@ -26,7 +26,7 @@ class Sequencia:
         self.motor_Y.foward()
         sleep(0.5)
         self.origin()
-        self.go_to_2D(0,self.motor_Y.max_disp)
+        self.go_to_2D(1,self.motor_Y.max_disp)
 
         #self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
 
@@ -43,6 +43,11 @@ class Sequencia:
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses
+        if origin_pulse> motor.max_pulses:
+           origin_pulse = motor.max_pulses
+        elif origin_pulse< 0:
+            origin_pulse = 0
+
         #print("Final_disp =", final_disp)
         final_pulse = round(final_disp*motor.puls_per_dist)
         if final_pulse> motor.max_pulses:
