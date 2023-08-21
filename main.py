@@ -3,7 +3,7 @@
 #pipreqs --force
 
 import threading
-install_all = False
+install_all = True
 
 
 if install_all:
@@ -35,7 +35,7 @@ if __name__ == '__main__':
             #print("Test Begin")
 
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
-            print("Pulses=", sequencia.motor_X.total_pulses, " Position=", sequencia.motor_X.position)
+            print("Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position,2)
             #pwm_thread = threading.Thread(target=pwm_task)
             #print_thread = threading.Thread(target=print_task)
 
