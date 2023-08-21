@@ -15,15 +15,16 @@ class Sequencia:
         self.motor_Y.foward()
         sleep(0.5)
 
-        #self.stop()
-        #sleep(0.5)
+        self.stop()
+        sleep(0.5)
         self.motor_X.calibration()
+        #self.motor_Y.foward()
         self.motor_Y.calibration()
         self.stop()
         #self.origin()
 
-        self.motor_X.foward()
-        self.motor_Y.foward()
+        #self.motor_X.foward()
+        #self.motor_Y.foward()
         #sleep(0.5)
         #self.origin()
         #sleep(3)
@@ -32,6 +33,7 @@ class Sequencia:
         #sleep(0.5)
         #self.go_to_2D(50,self.motor_Y.max_disp)
 
+        self.move_1D(self.motor_X, 50)
         #self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
 
         #self.trajectory()
