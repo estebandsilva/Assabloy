@@ -28,7 +28,7 @@ class Sequencia:
         self.origin()
         self.go_to_2D(0,self.motor_Y.max_disp)
 
-        self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
+        #self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
 
         #self.trajectory()
 
@@ -43,14 +43,14 @@ class Sequencia:
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses
-        print("Final_disp =", final_disp)
+        #print("Final_disp =", final_disp)
         final_pulse = round(final_disp*motor.puls_per_dist)
         if final_pulse> motor.max_pulses:
            final_pulse = motor.max_pulses
         elif final_pulse< 0:
             final_pulse = 0
 
-        print("Origin = ",origin_pulse, " --> Final=", final_pulse, " Accuracy=", motor._accuacy_pulses )
+        #print("Origin = ",origin_pulse, " --> Final=", final_pulse, " Accuracy=", motor._accuacy_pulses )
         if origin_pulse < final_pulse - motor._accuacy_pulses:
             motor.foward()
             return False
@@ -66,8 +66,8 @@ class Sequencia:
 
         X_i = self.create_list(origin_x, X_fin, 10)
         Y_i = self.create_list(origin_y, Y_fin, 10)
-        print("LIST -> ", X_i)
-
+        print("LIST Xi -> ", X_i)
+        print("LIST Yi -> ", X_i)
 
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
