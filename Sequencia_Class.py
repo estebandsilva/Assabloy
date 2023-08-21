@@ -24,9 +24,13 @@ class Sequencia:
 
         self.motor_X.foward()
         self.motor_Y.foward()
-        sleep(1)
+        sleep(0.5)
         self.origin()
-        self.go_to_2D(0,motor_Y.max_disp)
+        self.go_to_2D(0,self.motor_Y.max_disp)
+
+        self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
+
+        #self.trajectory()
 
 
     def create_list(self, initial, final, steps):
@@ -75,10 +79,31 @@ class Sequencia:
                     self.stop()
         self.stop()
 
+    def move_1D(self, motor, move):
+        origin = self.motor.position
+        X_fin = abs(origin + move)
+
+        X_i = self.create_list(origin, X_fin, 2)
+        print("LIST -> ", X_i)
+
+        for x in X_i:
+            X_bool = False
+            while X_bool == False:
+                try:
+                    X_bool = self.go_to(self.motor, x)
+                except KeyboardInterrupt:
+                    self.stop()
+        self.stop()
+
     def origin(self):
         self.go_to_2D(0,0)
 
     def trajectory(self):
-        pass
+        X_bool = True
+        self.motor_X.foward()
+        if X_bool!=self.motor_X.direction:
+            self.motor_Y.foward()
+            X_bool = self.motor_X.direction
+            self.move_1D(self.motor_Y,self.motor_Y.max_disp/10)
 
 sequencia = Sequencia(SW_emergency=19)
