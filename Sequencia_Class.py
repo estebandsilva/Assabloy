@@ -24,17 +24,10 @@ class Sequencia:
 
         self.motor_X.foward()
         self.motor_Y.foward()
-        sleep(3)
-
+        sleep(1)
         self.origin()
+        self.go_to_2D(0,motor_Y.max_disp)
 
-        #self.motor_X.stop()
-        #self.stop()
-        #sleep(0.5)
-
-        #self.motor_X.foward()
-        #sleep(3)
-        #self.origin()
 
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
@@ -80,6 +73,7 @@ class Sequencia:
                     Y_bool = self.go_to(self.motor_Y, y)
                 except KeyboardInterrupt:
                     self.stop()
+        self.stop()
 
     def origin(self):
         self.go_to_2D(0,0)
