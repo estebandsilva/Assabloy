@@ -26,7 +26,7 @@ class Sequencia:
         self.motor_Y.foward()
         sleep(0.5)
         self.origin()
-        self.go_to_2D(1,self.motor_Y.max_disp)
+        self.go_to_2D(50,self.motor_Y.max_disp)
 
         #self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
 
@@ -76,6 +76,8 @@ class Sequencia:
 
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
+            print("X - Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position, 2)," Fin=", round(x, 2))
+            print("Y - Pulses=", sequencia.motor_Y.total_pulses, " Position=", round(sequencia.motor_Y.position, 2)," Fin=", round(y, 2))
             while X_bool==False or Y_bool==False:
                 try:
                     X_bool = self.go_to(self.motor_X, x)
