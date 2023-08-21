@@ -104,7 +104,6 @@ class Motor:
                 self.foward()
             if self._calibration_bool == True and self._SW_ini_bool == False:
                 self.total_pulses = 0
-                self.max_disp = (self.total_pulses/self._pulses_per_rev)*self._distance_per_rev
                 self._SW_ini_bool = True
 
 
@@ -115,7 +114,7 @@ class Motor:
                 self.backward()
             if self._calibration_bool == True and self._SW_fin_bool == False:
                 self.max_pulses = self.total_pulses
-                self.max_disp = (self.total_pulses / self._pulses_per_rev) * self._distance_per_rev
+                self.max_disp = (self.max_pulses / self._pulses_per_rev) * self._distance_per_rev
 
                 self._SW_fin_bool = True
 
