@@ -13,7 +13,9 @@ class Sequencia:
         print("Foward ")
         self.motor_X.foward()
         self.motor_Y.foward()
-        sleep(0.5)
+        sleep(30)
+
+
         self.stop()
         sleep(0.5)
         self.motor_X.calibration()
@@ -63,17 +65,17 @@ class Sequencia:
             return True
     def go_to_2D(self, X_fin, Y_fin):
         origin_x = self.motor_X.position
-        #origin_y = self.motor_Y.position
+        origin_y = self.motor_Y.position
 
         X_i = self.create_list(origin_x, X_fin, 10)
-        #Y_i = self.create_list(origin_y, Y_fin, 100)
-        Y_i = X_i
+        Y_i = self.create_list(origin_y, Y_fin, 10)
+        #Y_i = X_i
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
             while X_bool==False or Y_bool==False:
                 X_bool = self.go_to(self.motor_X, x)
-                #Y_bool = self.go_to(self.motor_Y,y)
-                Y_bool = True
+                Y_bool = self.go_to(self.motor_Y,y)
+
     def origin(self):
         self.go_to_2D(0,0)
 
