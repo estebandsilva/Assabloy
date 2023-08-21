@@ -112,13 +112,13 @@ class Sequencia:
     def origin(self):
         self.go_to_2D(0,0)
 
-    def trajectory(self):
-        X_bool = True
+    def trajectory(self,X_bool):
         if X_bool!=self.motor_X.direction:
             self.motor_Y.foward()
             sleep(1)
-            X_bool = self.motor_X.direction
             self.motor_Y.stop()
+        return self.motor_X.direction
+
 
 
 sequencia = Sequencia(SW_emergency=19)
