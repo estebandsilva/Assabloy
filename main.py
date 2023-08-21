@@ -3,15 +3,15 @@
 #pipreqs --force
 
 import threading
-install_all = True
+install_all = False
 
 
 if install_all:
     import subprocess
     import sys
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "--upgrade", "pip"])
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "Adafruit-PCA9685==1.0.1"])
+    subprocess.check_call([sys.executable, "-m", "pip3", "install", "--upgrade", "pip"])
+    subprocess.check_call([sys.executable, "-m", "pip3", "install", "-r", "requirements.txt"])
+    subprocess.check_call([sys.executable, "-m", "pip3", "install", "Adafruit-PCA9685==1.0.1"])
 
 
 from Sequencia_Class import *
