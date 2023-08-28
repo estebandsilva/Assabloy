@@ -133,10 +133,12 @@ class Sequencia:
 
     def trajectory_Y(self,Y_bool):
         if Y_bool!=self.motor_Y.direction:
+            self.stop()
             self.motor_Y.stop()
             self.motor_X.foward()
             sleep(2)
             self.motor_X.stop()
+            self.stop()
             if self.motor_Y.direction:
                 self.motor_Y.foward()
             else:
