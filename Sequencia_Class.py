@@ -36,7 +36,7 @@ class Sequencia:
        #self.move_1D(self.motor_X, 50)
         #self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
 
-        self.trajectory()
+        #self.trajectory()
 
         #self.motor_X.foward()
 
