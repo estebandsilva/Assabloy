@@ -33,12 +33,12 @@ class Sequencia:
         #sleep(0.5)
         #self.go_to_2D(50,self.motor_Y.max_disp)
 
-        self.move_1D(self.motor_X, 50)
+       #self.move_1D(self.motor_X, 50)
         #self.move_1D(self.motor_Y, self.motor_Y.max_disp / 10)
 
-        #self.trajectory()
+        self.trajectory()
 
-        self.motor_X.foward()
+        #self.motor_X.foward()
 
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
@@ -112,13 +112,23 @@ class Sequencia:
     def origin(self):
         self.go_to_2D(0,0)
 
-    def trajectory(self,X_bool):
+    def trajectory_X(self,X_bool):
         if X_bool!=self.motor_X.direction:
+            self.motor_X.stop()
             self.motor_Y.foward()
             sleep(1)
             self.motor_Y.stop()
+            self.motor_X.foward()
         return self.motor_X.direction
 
+    def trajectory_Y(self,Y_bool):
+        if Y_bool!=self.motor_Y.direction:
+            self.motor_Y.stop()
+            self.motor_X.foward()
+            sleep(2)
+            self.motor_X.stop()
+            self.motor_Y.foward()
+        return self.motor_Y.direction
 
 
 sequencia = Sequencia(SW_emergency=19)

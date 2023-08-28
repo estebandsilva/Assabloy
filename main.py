@@ -34,15 +34,16 @@ if __name__ == '__main__':
             #motor_X.calibration()
             #sleep(1)
 
-            X_bool = sequencia.trajectory(X_bool)
+            #X_bool = sequencia.trajectory_X(X_bool)
+            Y_bool = sequencia.trajectory_Y(Y_bool)
 
             #
             print("Test Begin")
 
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
             #print("Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position,2))
-            print("X - Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position, 2))
-            print("Y - Pulses=", sequencia.motor_Y.total_pulses, " Position=", round(sequencia.motor_Y.position, 2))
+            print("X - Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position, 2),
+                  "Y - Pulses=", sequencia.motor_Y.total_pulses, " Position=", round(sequencia.motor_Y.position, 2))
             #pwm_thread = threading.Thread(target=pwm_task)
             #print_thread = threading.Thread(target=print_task)
 
