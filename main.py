@@ -26,13 +26,11 @@ def print_task():
 
 
 if __name__ == '__main__':
-    print("Test Begin 2")
+    print("Test Begin")
     Y_bool = sequencia.motor_Y.direction
 
     try:
         while True:
-            #motor_X.calibration()
-            #sleep(1)
 
             #X_bool = sequencia.trajectory_X(X_bool)
             Y_bool = sequencia.trajectory_Y(Y_bool)

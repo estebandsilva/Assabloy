@@ -1,4 +1,5 @@
 from Motor_Class import *
+from datalog import *
 
 class Sequencia:
     def __init__(self, SW_emergency):
@@ -10,7 +11,7 @@ class Sequencia:
         #GPIO.setup(self._SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
 
-        print("Foward ")
+        #print("Foward ")
         self.motor_X.foward()
         self.motor_Y.foward()
         sleep(0.5)
@@ -28,6 +29,8 @@ class Sequencia:
         self.motor_Y.foward()
         sleep(0.5)
         self.stop()
+
+        self.file = create_file()
 
         self.motor_Y.foward()
 
@@ -122,8 +125,11 @@ class Sequencia:
     def trajectory_X(self,X_bool):
         if X_bool!=self.motor_X.direction:
             self.motor_X.stop()
-            self.motor_Y.foward()
-            sleep(1)
+            if self.motor_Y.direction:
+                self.motor_Y.foward()
+            else:
+                self.motor_Y.backward()
+            sleep(2)
             self.motor_Y.stop()
             if self.motor_X.direction:
                 self.motor_X.foward()
@@ -135,7 +141,10 @@ class Sequencia:
         if Y_bool!=self.motor_Y.direction:
             self.stop()
             self.motor_Y.stop()
-            self.motor_X.foward()
+            if self.motor_X.direction:
+                self.motor_X.foward()
+            else:
+                self.motor_X.backward()
             sleep(2)
             self.motor_X.stop()
             self.stop()
@@ -144,6 +153,11 @@ class Sequencia:
             else:
                 self.motor_Y.backward()
         return self.motor_Y.direction
+
+    def update_file(self):
+        datalog(self.file, round(self.motor_X.position, 2), round(self.motor_Y.position, 2))
+
+
 
 
 sequencia = Sequencia(SW_emergency=19)
