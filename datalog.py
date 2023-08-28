@@ -16,7 +16,9 @@ def create_file():
     file_name = now.strftime('%H-%M-%S-%f')[:-3] + '.txt'
     file_path = os.path.join(folder_name, file_name)
     create_folder_if_not_exists(folder_name)
-    write_info_to_file="timestamp,dd_mm_yyyy,hh_mm_ss,x_position,y_position"
+    info = "timestamp,dd_mm_yyyy,hh_mm_ss,x_position,y_position"
+    write_info_to_file(file_path, info)
+
     return file_path
 
 def datalog(file_path, x_position, y_position):
