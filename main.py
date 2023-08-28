@@ -38,7 +38,7 @@ if __name__ == '__main__':
             Y_bool = sequencia.trajectory_Y(Y_bool)
 
             #
-            print("Test Begin")
+            #print("Test Begin")
 
             #print("Pulses=", motor_X.total_pulses, " Position=", motor_X.position)
             #print("Pulses=", sequencia.motor_X.total_pulses, " Position=", round(sequencia.motor_X.position,2))

@@ -135,7 +135,7 @@ class Sequencia:
         if Y_bool!=self.motor_Y.direction:
             self.motor_Y.stop()
             self.motor_X.foward()
-            sleep(1)
+            sleep(2)
             self.motor_X.stop()
             if self.motor_Y.direction:
                 self.motor_Y.foward()
