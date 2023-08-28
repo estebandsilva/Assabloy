@@ -23,9 +23,15 @@ class Sequencia:
         self.stop()
         #self.origin()
 
-        #self.motor_X.foward()
-        #self.motor_Y.foward()
-        #sleep(0.5)
+        self.motor_X.foward()
+        sleep(0.5)
+        self.stop()
+        self.motor_Y.foward()
+        sleep(0.5)
+        self.stop()
+        self.motor_Y.foward()
+
+
         #self.origin()
         #sleep(3)
         #self.motor_X.foward()
@@ -39,7 +45,7 @@ class Sequencia:
         #self.trajectory()
 
         #self.motor_X.foward()
-        self.motor_Y.foward()
+
 
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
@@ -126,7 +132,7 @@ class Sequencia:
         if Y_bool!=self.motor_Y.direction:
             self.motor_Y.stop()
             self.motor_X.foward()
-            sleep(2)
+            sleep(1)
             self.motor_X.stop()
             self.motor_Y.foward()
         return self.motor_Y.direction
