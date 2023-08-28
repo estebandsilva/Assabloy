@@ -39,6 +39,7 @@ class Sequencia:
         #self.trajectory()
 
         #self.motor_X.foward()
+        self.motor_Y.foward()
 
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
