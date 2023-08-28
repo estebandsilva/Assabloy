@@ -17,18 +17,18 @@ class Sequencia:
 
         self.stop()
         sleep(0.5)
-        self.motor_X.calibration()
-        #self.motor_Y.foward()
-        self.motor_Y.calibration()
-        self.stop()
-        #self.origin()
 
+        self.motor_X.calibration()
         self.motor_X.foward()
         sleep(0.5)
         self.stop()
+
+
+        self.motor_Y.calibration()
         self.motor_Y.foward()
         sleep(0.5)
         self.stop()
+
         self.motor_Y.foward()
 
 
