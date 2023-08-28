@@ -125,7 +125,10 @@ class Sequencia:
             self.motor_Y.foward()
             sleep(1)
             self.motor_Y.stop()
-            self.motor_X.foward()
+            if self.motor_X.direction:
+                self.motor_X.foward()
+            else:
+                self.motor_X.backward()
         return self.motor_X.direction
 
     def trajectory_Y(self,Y_bool):
@@ -134,7 +137,10 @@ class Sequencia:
             self.motor_X.foward()
             sleep(1)
             self.motor_X.stop()
-            self.motor_Y.foward()
+            if self.motor_Y.direction:
+                self.motor_Y.foward()
+            else:
+                self.motor_Y.backward()
         return self.motor_Y.direction
 
 
