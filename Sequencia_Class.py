@@ -8,6 +8,8 @@ class Sequencia:
         self.motor_X = Motor(ENA = 6, PUL_out = 3, DIR_out = 16, PUL_in = 27, DIR_in = 18 , SW_ini = 12, SW_fin = 20, radius = 24/2, distance=1755)
         self.motor_Y = Motor(ENA = 24, PUL_out = 0, DIR_out = 25, PUL_in = 4, DIR_in = 17 , SW_ini = 23, SW_fin = 22, radius = 15/2, distance=1680)
 
+        self.file = create_file()
+
         #GPIO.setup(self._SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
 
@@ -30,7 +32,6 @@ class Sequencia:
         sleep(0.5)
         self.stop()
 
-        self.file = create_file()
 
         self.motor_Y.foward()
 
