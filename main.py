@@ -27,7 +27,7 @@ def print_task():
 
 if __name__ == '__main__':
     print("Test Begin 2")
-    X_bool = sequencia.motor_Y.direction
+    Y_bool = sequencia.motor_Y.direction
 
     try:
         while True:
