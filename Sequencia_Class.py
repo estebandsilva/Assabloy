@@ -10,8 +10,8 @@ class Sequencia:
 
         self.file = create_file()
 
-        #GPIO.setup(self._SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        #GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
+        GPIO.setup(self._SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self._SW_emergency, GPIO.RISING, callback=self.stop)
 
         #print("Foward ")
         self.motor_X.foward()
@@ -161,4 +161,4 @@ class Sequencia:
 
 
 
-sequencia = Sequencia(SW_emergency=19)
+sequencia = Sequencia(SW_emergency=5)
