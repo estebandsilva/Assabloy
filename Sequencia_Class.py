@@ -2,7 +2,7 @@ from Motor_Class import *
 from datalog import *
 
 class Sequencia:
-    def __init__(self, SW_emergency):
+    def __init__(self):
 
         self.SW_emergency = 5
         self.motor_X = Motor(ENA = 6, PUL_out = 3, DIR_out = 16, PUL_in = 27, DIR_in = 18 , SW_ini = 12, SW_fin = 20, radius = 24/2, distance=1755)
