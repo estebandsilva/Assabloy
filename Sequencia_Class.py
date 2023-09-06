@@ -54,15 +54,17 @@ class Sequencia:
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
 
+
+    def stop(self):
+        self.motor_X.stop()
+        self.motor_Y.stop()
+
     def sw_emergency_fx(self):
         if not GPIO.input(self.SW_emergency):
             print("Button pressed! - STOP")
             self.stop()
         else:
             print("Button released! - START")
-    def stop(self):
-        self.motor_X.stop()
-        self.motor_Y.stop()
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses
