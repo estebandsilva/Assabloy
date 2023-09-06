@@ -11,7 +11,7 @@ class Sequencia:
         self.file = create_file()
 
         GPIO.setup(self.SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.add_event_detect(self.SW_emergency, GPIO.BOTH, callback=self.sw_emergency_fx)
+        GPIO.add_event_detect(self.SW_emergency, GPIO.BOTH, callback=self.stop)
 
         #print("Foward ")
         self.motor_X.foward()
@@ -63,8 +63,8 @@ class Sequencia:
         #if not GPIO.input(self.SW_emergency):
         if True:
             print("Button pressed! - STOP")
-            self.motor_X.stop()
-            self.motor_Y.stop()
+            #self.motor_X.stop()
+            #self.motor_Y.stop()
         else:
             print("Button released! - START")
 
