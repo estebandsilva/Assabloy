@@ -11,7 +11,7 @@ class Sequencia:
         self.file = create_file()
 
         GPIO.setup(self._SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.add_event_detect(self._SW_emergency, GPIO.FALLING, callback=self.stop)
+        GPIO.add_event_detect(self._SW_emergency, GPIO.FALLING,bouncetime=100,callback=self.sw_emergency)
 
         #print("Foward ")
         self.motor_X.foward()
@@ -159,6 +159,12 @@ class Sequencia:
         datalog(self.file, round(self.motor_X.position, 2), round(self.motor_Y.position, 2))
 
 
+    def sw_emergency(self):
+        if not GPIO.input(self._SW_emergency):
+            print("Button pressed!")
+            self.stop()
+        else:
+            print("Button released!")
 
 
 sequencia = Sequencia(SW_emergency=5)
