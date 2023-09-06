@@ -71,6 +71,7 @@ class Sequencia:
 
         else:
             print("Button released! - START")
+            self.motor_Y.foward()
 
     def go_to(self, motor, final_disp):
         origin_pulse = motor.total_pulses
