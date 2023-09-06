@@ -11,7 +11,7 @@ class Sequencia:
         self.motor_Y = Motor(ENA = 24, PUL_out = 0, DIR_out = 25, PUL_in = 4, DIR_in = 17 , SW_ini = 23, SW_fin = 22, radius = 15/2, distance=1680)
 
         self.setup()
-
+        self.file = create_file()
 
 
 
@@ -171,7 +171,7 @@ class Sequencia:
 
     def setup(self):
         GPIO.add_event_detect(self.SW_emergency, GPIO.BOTH, callback=self.sw_emergency_fx)
-        self.file = create_file()
+
 
 
 
