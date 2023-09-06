@@ -60,7 +60,8 @@ class Sequencia:
         self.motor_Y.stop()
 
     def sw_emergency_fx(self):
-        if not GPIO.input(self.SW_emergency):
+        #if not GPIO.input(self.SW_emergency):
+        if True:
             print("Button pressed! - STOP")
             self.motor_X.stop()
             self.motor_Y.stop()
