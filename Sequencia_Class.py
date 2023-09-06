@@ -89,13 +89,13 @@ class Sequencia:
 
         X_i = self.create_list(origin_x, X_fin, 10)
         Y_i = self.create_list(origin_y, Y_fin, 10)
-        print("LIST Xi -> ", X_i)
-        print("LIST Yi -> ", Y_i)
+        #print("LIST Xi -> ", X_i)
+        #print("LIST Yi -> ", Y_i)
 
         for x,y in zip(X_i, Y_i):
             X_bool, Y_bool = False, False
-            print("X - Pulses=", self.motor_X.total_pulses, " Position=", round(self.motor_X.position, 2)," Fin=", round(x, 2))
-            print("Y - Pulses=", self.motor_Y.total_pulses, " Position=", round(self.motor_Y.position, 2)," Fin=", round(y, 2))
+            #print("X - Pulses=", self.motor_X.total_pulses, " Position=", round(self.motor_X.position, 2)," Fin=", round(x, 2))
+            #print("Y - Pulses=", self.motor_Y.total_pulses, " Position=", round(self.motor_Y.position, 2)," Fin=", round(y, 2))
             while X_bool==False or Y_bool==False:
                 try:
                     X_bool = self.go_to(self.motor_X, x)
@@ -109,7 +109,7 @@ class Sequencia:
         X_fin = abs(origin + move)
 
         X_i = self.create_list(origin, X_fin, 2)
-        print("LIST -> ", X_i)
+        #print("LIST -> ", X_i)
 
         for x in X_i:
             X_bool = False
