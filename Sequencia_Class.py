@@ -3,6 +3,8 @@ from datalog import *
 
 class Sequencia:
     def __init__(self):
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BCM)
 
         self.SW_emergency = 5
         GPIO.setup(self.SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
