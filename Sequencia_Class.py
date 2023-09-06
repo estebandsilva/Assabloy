@@ -4,14 +4,14 @@ from datalog import *
 class Sequencia:
     def __init__(self, SW_emergency):
 
-        self._SW_emergency = SW_emergency
+        self.SW_emergency = SW_emergency
         self.motor_X = Motor(ENA = 6, PUL_out = 3, DIR_out = 16, PUL_in = 27, DIR_in = 18 , SW_ini = 12, SW_fin = 20, radius = 24/2, distance=1755)
         self.motor_Y = Motor(ENA = 24, PUL_out = 0, DIR_out = 25, PUL_in = 4, DIR_in = 17 , SW_ini = 23, SW_fin = 22, radius = 15/2, distance=1680)
 
         self.file = create_file()
 
-        GPIO.setup(self._SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.add_event_detect(self._SW_emergency, GPIO.BOTH, callback=self.sw_emergency)
+        GPIO.setup(self.SW_emergency, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.add_event_detect(self.SW_emergency, GPIO.BOTH, callback=self.sw_emergency_fx)
 
         #print("Foward ")
         self.motor_X.foward()
@@ -54,7 +54,12 @@ class Sequencia:
     def create_list(self, initial, final, steps):
         return [initial + i * ((final - initial) / (steps - 1)) for i in range(steps)]
 
-
+    def sw_emergency_fx(self):
+        if not GPIO.input(self.SW_emergency):
+            print("Button pressed! - STOP")
+            self.stop()
+        else:
+            print("Button released! - START")
     def stop(self):
         self.motor_X.stop()
         self.motor_Y.stop()
@@ -159,12 +164,7 @@ class Sequencia:
         datalog(self.file, round(self.motor_X.position, 2), round(self.motor_Y.position, 2))
 
 
-    def sw_emergency(self):
-        if not GPIO.input(self._SW_emergency):
-            print("Button pressed! - STOP")
-            self.stop()
-        else:
-            print("Button released! - START")
+
 
 
 sequencia = Sequencia(SW_emergency=5)
