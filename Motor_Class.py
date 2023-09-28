@@ -146,7 +146,6 @@ class Motor:
     def foward(self):
         #self.direction = True
         #GPIO.output(self._ENA, GPIO.LOW)
-
         if self.movement==False:
             self.start()
         GPIO.output(self._DIR_out, GPIO.HIGH)
