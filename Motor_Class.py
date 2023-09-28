@@ -108,7 +108,7 @@ class Motor:
         if GPIO.input(self._SW_ini)==False:
             if self.movement:
                 #print("SWITCH INI-", self._SW_ini)
-                self.stop()
+                #self.stop()
                 #sleep(0.5)
                 self.foward()
                 self.total_pulses = 0
@@ -123,7 +123,7 @@ class Motor:
         if GPIO.input(self._SW_fin)==False:
             if self.movement:
                 #print("SWITCH FIN-", self._SW_fin)
-                self.stop()
+                #self.stop()
                 #sleep(0.5)
                 self.backward()
             if self._calibration_bool == True and self._SW_fin_bool == False:
