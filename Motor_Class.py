@@ -109,7 +109,7 @@ class Motor:
             if self.movement:
                 #print("SWITCH INI-", self._SW_ini)
                 self.stop()
-                sleep(0.5)
+                #sleep(0.5)
                 self.foward()
                 self.total_pulses = 0
                 self.position = 0
@@ -124,7 +124,7 @@ class Motor:
             if self.movement:
                 #print("SWITCH FIN-", self._SW_fin)
                 self.stop()
-                sleep(0.5)
+                #sleep(0.5)
                 self.backward()
             if self._calibration_bool == True and self._SW_fin_bool == False:
                 self.max_pulses = self.total_pulses
