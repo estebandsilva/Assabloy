@@ -18,9 +18,9 @@ class Sequencia:
 
 
         #print("Foward ")
-        self.motor_X.foward()
+        #self.motor_X.foward()
         self.motor_Y.foward()
-        sleep(5)
+        sleep(10)
 
         self.stop()
         sleep(0.5)
