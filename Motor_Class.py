@@ -110,7 +110,10 @@ class Motor:
                 #print("SWITCH INI-", self._SW_ini)
                 #self.stop()
                 #sleep(0.5)
+                self.pwm.set_pwm(self.PUL_pwm, 0, 0)
+                #sleep(0.1)
                 self.foward()
+                self.pwm.set_pwm(self.PUL_pwm, 0, 100)
                 self.total_pulses = 0
                 self.position = 0
             if self._calibration_bool == True and self._SW_ini_bool == False:
@@ -123,9 +126,10 @@ class Motor:
         if GPIO.input(self._SW_fin)==False:
             if self.movement:
                 #print("SWITCH FIN-", self._SW_fin)
-                #self.stop()
-                #sleep(0.5)
+                self.pwm.set_pwm(self.PUL_pwm, 0, 0)
+                #sleep(0.1)
                 self.backward()
+                self.pwm.set_pwm(self.PUL_pwm, 0, 100)
             if self._calibration_bool == True and self._SW_fin_bool == False:
                 self.max_pulses = self.total_pulses
                 self.max_disp = (self.max_pulses)*(self.distance/self.max_pulses)
