@@ -176,6 +176,7 @@ class Motor:
         #sleep(0.01)
 
 
+
     def setup(self):
         time_bounce = round(1000*(1/self._max_freq)*0.9)*0
         if time_bounce>0:
