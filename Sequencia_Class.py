@@ -22,6 +22,7 @@ class Sequencia:
         self.motor_Y.foward()
 #        sleep(20)
 #        print("End ")
+        sleep(1)
 
         self.stop()
         sleep(0.5)
