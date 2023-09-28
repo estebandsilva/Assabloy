@@ -176,7 +176,7 @@ class Sequencia:
 
     def trajectory_2Y(self,Y_bool):
         if Y_bool!=self.motor_Y.direction:
-            if self.motor_Y.direction==False:
+            if self.motor_Y.direction==True:
                 self.stop()
                 # self.motor_Y.stop()
                 if self.motor_X.direction:
