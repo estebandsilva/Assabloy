@@ -20,7 +20,7 @@ class Sequencia:
         #print("Foward ")
         self.motor_X.foward()
         self.motor_Y.foward()
-        sleep(0.5)
+        sleep(5)
 
         self.stop()
         sleep(0.5)
