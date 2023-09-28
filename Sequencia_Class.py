@@ -174,20 +174,21 @@ class Sequencia:
         return self.motor_Y.direction
 
     def trajectory_2Y(self,Y_bool):
-        if self.motor_Y.direction==False:
-            self.stop()
-            # self.motor_Y.stop()
-            if self.motor_X.direction:
-                self.motor_X.foward()
-            else:
-                self.motor_X.backward()
-            sleep(2)
-            #self.motor_X.stop()
-            self.stop()
-            if self.motor_Y.direction:
-                self.motor_Y.foward()
-            else:
-                self.motor_Y.backward()
+        if Y_bool!=self.motor_Y.direction:
+            if self.motor_Y.direction==False:
+                self.stop()
+                # self.motor_Y.stop()
+                if self.motor_X.direction:
+                    self.motor_X.foward()
+                else:
+                    self.motor_X.backward()
+                sleep(2)
+                self.motor_X.stop()
+                #self.stop()
+                if self.motor_Y.direction:
+                    self.motor_Y.foward()
+                else:
+                    self.motor_Y.backward()
         return self.motor_Y.direction
 
 

@@ -179,7 +179,7 @@ class Motor:
         self.movement = False
         #GPIO.output(self._ENA, GPIO.LOW)
         #self.pwm.stop()
-        self.pwm.set_pwm(self.PUL_pwm, 100, 100)
+        self.pwm.set_pwm(self.PUL_pwm, 0, 0)
         #sleep(0.001)
 
 
