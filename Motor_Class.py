@@ -65,12 +65,15 @@ class Motor:
 
         GPIO.setwarnings(False)
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.HIGH)
+        GPIO.setup(self._ENA, GPIO.OUT, initial = GPIO.LOW)
         GPIO.setup(self._DIR_out, GPIO.OUT, initial = GPIO.HIGH)
         GPIO.setup(self._PUL_in, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self._DIR_in, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self._SW_ini, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.setup(self._SW_fin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+        GPIO.output(self._ENA, GPIO.LOW)
+
         self.pwm = Adafruit_PCA9685.PCA9685()
         self.pwm.set_pwm_freq(self.freq)
         self.setup()
@@ -168,7 +171,7 @@ class Motor:
 
     def start(self):
         self.movement = True
-        GPIO.output(self._ENA, GPIO.LOW)
+        #GPIO.output(self._ENA, GPIO.LOW)
         #self.pwm.start(self._duty_cycle)  # start PWM of required Duty Cycle
         self.pwm.set_pwm(self.PUL_pwm, 0, 100)
 
