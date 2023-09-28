@@ -17,10 +17,12 @@ class Sequencia:
 
 
 
-        #print("Foward ")
+        print("Foward ")
         #self.motor_X.foward()
+
         self.motor_Y.foward()
-        sleep(10)
+        sleep(20)
+        print("end ")
 
         self.stop()
         sleep(0.5)
