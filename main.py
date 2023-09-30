@@ -33,7 +33,7 @@ if __name__ == '__main__':
         while True:
 
             #X_bool = sequencia.trajectory_X(X_bool)
-            Y_bool = sequencia.trajectory_Y(Y_bool)
+            #Y_bool = sequencia.trajectory_Y(Y_bool)
             sequencia.update_file()
 
             #
