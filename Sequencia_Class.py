@@ -155,7 +155,7 @@ class Sequencia:
                 self.motor_X.foward()
             else:
                 self.motor_X.backward()
-        return self.motor_X.direction
+            return self.motor_X.direction
 
     def trajectory_Y(self,Y_bool):
         if Y_bool!=self.motor_Y.direction:
@@ -172,7 +172,7 @@ class Sequencia:
                 self.motor_Y.foward()
             else:
                 self.motor_Y.backward()
-        return self.motor_Y.direction
+            return self.motor_Y.direction
 
     def trajectory_2Y(self,Y_bool):
         if Y_bool!=self.motor_Y.direction:
@@ -190,7 +190,7 @@ class Sequencia:
                     self.motor_Y.foward()
                 else:
                     self.motor_Y.backward()
-        return self.motor_Y.direction
+                return self.motor_Y.direction
 
 
     def update_file(self):
