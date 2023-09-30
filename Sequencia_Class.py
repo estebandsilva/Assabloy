@@ -159,6 +159,7 @@ class Sequencia:
 
     def trajectory_Y(self,Y_bool):
         if Y_bool!=self.motor_Y.direction:
+            print("Entering",Y_bool,self.motor_Y.direction)
             self.stop()
             # self.motor_Y.stop()
             if self.motor_X.direction:
