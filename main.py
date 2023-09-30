@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
             #X_bool = sequencia.trajectory_X(X_bool)
             Y_bool = sequencia.trajectory_Y(Y_bool)
-            print(sequencia.motor_Y.direction)
+            #print(sequencia.motor_Y.direction)
             sequencia.update_file()
 
             #
