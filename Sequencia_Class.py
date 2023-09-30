@@ -167,8 +167,8 @@ class Sequencia:
             else:
                 self.motor_X.backward()
             sleep(2)
-            self.motor_X.stop()
-            #self.stop()
+            #self.motor_X.stop()
+            self.stop()
             if self.motor_Y.direction:
                 self.motor_Y.foward()
             else:
