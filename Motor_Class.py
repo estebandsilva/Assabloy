@@ -176,7 +176,7 @@ class Motor:
 
     def stop(self):
         self.movement = False
-        GPIO.output(self._ENA, GPIO.LOW)
+        #GPIO.output(self._ENA, GPIO.LOW)
         #self.pwm.stop()
         self.pwm.set_pwm(self.PUL_pwm, 0, 0)
         #sleep(0.001)
