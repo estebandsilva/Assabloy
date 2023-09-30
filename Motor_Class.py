@@ -119,6 +119,8 @@ class Motor:
                 #self.pwm.set_pwm(self.PUL_pwm, 0, 100)
                 self.total_pulses = 0
                 self.position = 0
+                self.direction = True
+
             if self._calibration_bool == True and self._SW_ini_bool == False:
                 self.total_pulses = 0
                 self.position = 0
@@ -132,6 +134,7 @@ class Motor:
                 #self.pwm.set_pwm(self.PUL_pwm, 0, 0)
                 #sleep(0.1)
                 self.backward()
+                self.direction = False
                 #self.pwm.set_pwm(self.PUL_pwm, 0, 100)
             if self._calibration_bool == True and self._SW_fin_bool == False:
                 self.max_pulses = self.total_pulses
@@ -191,7 +194,7 @@ class Motor:
         else:
             GPIO.add_event_detect(self._PUL_in, GPIO.RISING, callback=self.count_pulses)
 
-        GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
+        #GPIO.add_event_detect(self._DIR_in, GPIO.BOTH, callback=self.direction_change)
         GPIO.add_event_detect(self._SW_ini, GPIO.FALLING, callback=self.direction_change_true)
         GPIO.add_event_detect(self._SW_fin, GPIO.FALLING, callback=self.direction_change_false)
 
