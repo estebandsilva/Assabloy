@@ -4,7 +4,7 @@
 
 import threading
 install_all = False
-
+Y_bool = True
 
 if install_all:
     import subprocess
